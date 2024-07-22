@@ -9,12 +9,11 @@ import { RouterProvider, createHashRouter } from 'react-router-dom';
 import Biometria from './routes/Biometria.tsx'
 import ClasificacionFibra from './routes/ClasificacionFibra.jsx'
 import Muestras from './routes/Muestras.tsx'
-
 import CapacidadReproductiva from './routes/CapacidadReproductiva.tsx'
-import FemaleForm from './routes/FemaleForm.tsx'
 import Login from './Login.jsx'
 import Dashboard from './routes/Dashboard.tsx';
 import NewRegister from './routes/NewRegister.tsx'
+import Salud from './routes/Salud.tsx'
 
 
 const router = createHashRouter([
@@ -51,9 +50,10 @@ const router = createHashRouter([
     element: <CapacidadReproductiva></CapacidadReproductiva>,
   },
   {
-    path: "/femaleform",
-    element: <FemaleForm></FemaleForm>,
+    path: "/salud",
+    element: <Salud></Salud>,
   },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

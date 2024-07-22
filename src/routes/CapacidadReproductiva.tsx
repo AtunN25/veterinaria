@@ -6,7 +6,7 @@ const formattedDate = today.toISOString().split("T")[0];
 
 function CapacidadReproductiva() {
   const navigate = useNavigate();
-  const handleButtonClick = (path:string) => {
+  const handleButtonClick = (path: string) => {
     navigate(path); // Redirige a la ruta del dashboard
   };
   return (
@@ -86,6 +86,16 @@ function CapacidadReproductiva() {
             type="number"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="ej: 1s"
+          />
+        </div>
+        
+        <div className="mt-2">
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Observaciones
+          </label>
+          <textarea
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Ingrese observaciones"
           />
         </div>
 

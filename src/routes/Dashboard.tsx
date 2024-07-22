@@ -22,7 +22,7 @@ const validAretes = [
 function Dashboard() {
   const navigate = useNavigate();
 
-  const handleButtonClick = (path:string) => {
+  const handleButtonClick = (path: string) => {
     if (path === "/newregister") {
       navigate(path);
     } else {
@@ -40,7 +40,6 @@ function Dashboard() {
           } else if (path === "/femaleform" && animal.gender !== "F") {
             alert("!ERROR! El formulario es solo para animales Hembras.");
           } else {
-         
             navigate(path);
           }
         } else {
@@ -64,13 +63,12 @@ function Dashboard() {
               alt="external-llama-animal-body-icongeek26-flat-icongeek26"
             />
             <div className="px-3 text-left rtl:text-right">
-      
               <div className="mb-1 text-xs">Cantidad de Animales</div>
               <div className="-mt-1 font-sans text-sm font-semibold">27</div>
             </div>
           </div>
         </div>
-        <button className="bg-green-900 text-white rounded-lg inline-flex items-center justify-center px-2 py-2.5">
+        <button className="bg-green-900 text-white rounded-lg inline-flex items-center justify-center px-2 ">
           <img
             width="30"
             height="30"
@@ -78,7 +76,7 @@ function Dashboard() {
             alt="ms-excel"
           />
           <div className="text-left rtl:text-right px-2">
-            <div className="mb-1 text-xs">exportar Sabana</div>
+            <div className="mb-1 text-xs ">Sabana Completa</div>
           </div>
         </button>
       </div>
@@ -106,26 +104,11 @@ function Dashboard() {
             <img
               width="30"
               height="30"
-              src="https://img.icons8.com/nolan/64/bookmark.png"
-              alt="bookmark"
+              src="https://img.icons8.com/fluency/48/fingerprint-accepted.png"
+              alt="fingerprint-accepted"
             />
             <div className="text-left rtl:text-right">
               <div className="mb-1 text-xs">Biometria</div>
-            </div>
-          </button>
-
-          <button
-            className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
-            onClick={() => handleButtonClick("/muestras")}
-          >
-            <img
-              width="30"
-              height="30"
-              src="https://img.icons8.com/nolan/64/bookmark.png"
-              alt="bookmark"
-            />
-            <div className="text-left rtl:text-right">
-              <div className="mb-1 text-xs">Muestras de Semen</div>
             </div>
           </button>
 
@@ -136,11 +119,25 @@ function Dashboard() {
             <img
               width="30"
               height="30"
-              src="https://img.icons8.com/nolan/64/bookmark.png"
-              alt="bookmark"
+              src="https://img.icons8.com/color/48/two-hairs.png"
+              alt="two-hairs"
             />
             <div className="text-left rtl:text-right">
               <div className="mb-1 text-xs">Clasificacion de Fibra</div>
+            </div>
+          </button>
+          <button
+            className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
+            onClick={() => handleButtonClick("/muestras")}
+          >
+            <img
+              width="30"
+              height="30"
+              src="https://img.icons8.com/external-vectorslab-flat-vectorslab/53/external-Injection-education-and-science-vectorslab-flat-vectorslab.png"
+              alt="external-Injection-education-and-science-vectorslab-flat-vectorslab"
+            />
+            <div className="text-left rtl:text-right">
+              <div className="mb-1 text-xs">Muestras de Semen</div>
             </div>
           </button>
 
@@ -151,8 +148,8 @@ function Dashboard() {
             <img
               width="30"
               height="30"
-              src="https://img.icons8.com/nolan/64/bookmark.png"
-              alt="bookmark"
+              src="https://img.icons8.com/dusk/64/alpaca--v1.png"
+              alt="alpaca--v1"
             />
             <div className="text-left rtl:text-right">
               <div className="mb-1 text-xs">Capacidad reproductiva</div>
@@ -161,33 +158,50 @@ function Dashboard() {
 
           <button
             className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
-            onClick={() => handleButtonClick("/femaleform")}
+            onClick={() => handleButtonClick("/capacidadreproductiva")}
           >
             <img
               width="30"
               height="30"
-              src="https://img.icons8.com/nolan/64/bookmark.png"
-              alt="bookmark"
+              src="https://img.icons8.com/fluency/48/heart-with-pulse--v1.png"
+              alt="heart-with-pulse--v1"
             />
             <div className="text-left rtl:text-right">
-              <div className="mb-1 text-xs">Registro Hembras</div>
+              <div className="mb-1 text-xs">Salud</div>
             </div>
           </button>
         </div>
       </div>
 
-      <div className="flex rounded overflow-hidden shadow-lg items-center p-2 space-x-2">
+      <div className="flex items-center rounded  shadow-lg  p-2 space-x-2 justify-center">
         <button
-          type="button"
-          className="focus:outline-none text-white bg-cyan-800  hover:bg-cyan-400   font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 "
+          className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
+          onClick={() => handleButtonClick("/")}
         >
-          Alpacas
+          <img
+            width="30"
+            height="30"
+            src="https://img.icons8.com/color/48/microsoft-excel-2019--v1.png"
+            alt="microsoft-excel-2019--v1"
+          />
+          <div className="text-left rtl:text-right">
+            <div className="mb-1 text-xs">Sabana Macho</div>
+          </div>
         </button>
+
         <button
-          type="button"
-          className="focus:outline-none text-white bg-cyan-800  hover:bg-cyan-400  font-medium rounded-lg text-sm px-5 py-2.5 mb-2 "
+          className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
+          onClick={() => handleButtonClick("/")}
         >
-          Llamas
+          <img
+            width="30"
+            height="30"
+            src="https://img.icons8.com/color/48/microsoft-excel-2019--v1.png"
+            alt="microsoft-excel-2019--v1"
+          />
+          <div className="text-left rtl:text-right">
+            <div className="mb-1 text-xs">Sabana Hembra</div>
+          </div>
         </button>
       </div>
       <div className="">

@@ -5,7 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {backgroundColor: {
+      'blue-opacity': 'rgba(31, 41, 55, 0.8)', // Fondo azul oscuro con opacidad
+    },},
   },
   plugins: [],
 }

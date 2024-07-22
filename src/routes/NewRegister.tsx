@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function NewRegister() {
   const navigate = useNavigate();
-  const handleButtonClick = (path:string) => {
+  const handleButtonClick = (path: string) => {
     navigate(path); // Redirige a la ruta del dashboard
   };
 
@@ -15,13 +15,15 @@ function NewRegister() {
   today.setDate(today.getDate() - 1); // Restar un día
   const formattedDate = today.toISOString().split("T")[0];
 
- 
-  const handleAnimalTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleAnimalTypeChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setAnimalType(event.target.value);
   };
 
-  
-  const handleBirthTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleBirthTypeChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setBirthType(event.target.value);
   };
 
@@ -127,8 +129,6 @@ function NewRegister() {
               </select>
             )}
           </div>
-
-         
         </div>
 
         <div className="mt-2">
@@ -145,7 +145,31 @@ function NewRegister() {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500  "
                 ></input>
               </div>
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Fecha de Ingreso
+                </label>
+                <div className="relative max-w-sm">
+                  <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    <svg
+                      className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                    </svg>
+                  </div>
+                  <input
+                    type="date"
+                    name="date"
+                    defaultValue={formattedDate}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Select date"
+                  ></input>
+                </div>
             </div>
+            
           ) : (
             <div>
               <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -170,29 +194,29 @@ function NewRegister() {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500  "
                 ></input>
 
-<label className="block text-sm font-medium leading-6 text-gray-900">
-            Fecha de Nacimiento
-          </label>
-          <div className="relative max-w-sm">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-              </svg>
-            </div>
-            <input
-              type="date"
-              name="date"
-              defaultValue={formattedDate}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Select date"
-            ></input>
-          </div>
+                <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Fecha de Nacimiento
+                </label>
+                <div className="relative max-w-sm">
+                  <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    <svg
+                      className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                    </svg>
+                  </div>
+                  <input
+                    type="date"
+                    name="date"
+                    defaultValue={formattedDate}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Select date"
+                  ></input>
+                </div>
               </div>
             </div>
           )}

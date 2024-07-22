@@ -48,6 +48,8 @@ function Biometria() {
           ></input>
         </div>
 
+
+
         <div className="mt-2">
           <label className="block text-sm font-medium leading-6 text-gray-900">
             C. Dentaria de boca
@@ -81,18 +83,6 @@ function Biometria() {
             placeholder=""
           />
         </div>
-
-        <label className="block text-sm font-medium leading-6 text-gray-900">
-            Peso
-          </label>
-          <div className="mt-2">
-            <input
-              type="text"
-              name="first-name"
-              id="first-name"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500  "
-            ></input>
-          </div>
 
         <div className="mt-2">
           <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -252,6 +242,17 @@ function Biometria() {
 
         <div className="mt-2">
           <label className="block text-sm font-medium leading-6 text-gray-900">
+            Isquiones
+          </label>
+          <input
+            type="decimal"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="ej: 2.1"
+          />
+        </div>
+
+        <div className="mt-2">
+          <label className="block text-sm font-medium leading-6 text-gray-900">
             Observaciones
           </label>
           <textarea
@@ -261,7 +262,16 @@ function Biometria() {
         </div>
 
         {sexo === "hembra" ? (
-          <p></p>
+          <div className="mt-2">
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Comisura vulvar
+          </label>
+          <input
+            type="decimal"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="ej: 2.5"
+          />
+        </div>
         ) : (
           <div>
             <h2 className="text-lg font-bold leading-7 text-gray-900">

@@ -5,15 +5,15 @@ today.setDate(today.getDate() - 1); // Restar un día
 const formattedDate = today.toISOString().split("T")[0];
 
 function ClasificacionFibra() {
-    const navigate = useNavigate();
-    const handleButtonClick = (path:string) => {
-      navigate(path); // Redirige a la ruta del dashboard
-    };
+  const navigate = useNavigate();
+  const handleButtonClick = (path: string) => {
+    navigate(path); // Redirige a la ruta del dashboard
+  };
   return (
     <div>
       <div className="p-4 rounded-sm">
         <h2 className="text-xl font-bold leading-7 text-gray-900">
-          {"Calificacion de Fibra -"  }
+          Calificacion de Fibra
         </h2>
 
         <form>
@@ -42,119 +42,143 @@ function ClasificacionFibra() {
           </div>
 
           <label className="block text-sm font-medium leading-6 text-gray-900">
-              Densidad
-            </label>
-            <select
-              id="animalType"
-              name="animalType"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-                
-              <option value="baja">baja</option>
-              <option value="media">media</option>
-              <option value="buena">buena</option>
-              <option value="alta">alta</option>
-            </select>
-
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Definicion
-            </label>
-            <select
-              id="animalType"
-              name="animalType"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-                
-              <option value="baja">baja</option>
-              <option value="media">media</option>
-              <option value="buena">buena</option>
-              <option value="alta">alta</option>
-            </select>
-
-
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Calce
-            </label>
-            <select
-              id="animalType"
-              name="animalType"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-                
-              <option value="baja">baja</option>
-              <option value="media">media</option>
-              <option value="buena">buena</option>
-              <option value="alta">alta</option>
-            </select>
-
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Uniformidad
-            </label>
-            <select
-              id="animalType"
-              name="animalType"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-                
-              <option value="baja">baja</option>
-              <option value="media">media</option>
-              <option value="buena">buena</option>
-              <option value="alta">alta</option>
-            </select>
-
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Tuco
-            </label>
-            <select
-              id="animalType"
-              name="animalType"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-                
-              <option value="baja">baja</option>
-              <option value="media">media</option>
-              <option value="no">no</option>
-            </select>
-
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Color
-            </label>
-            <select
-              id="animalType"
-              name="animalType"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-                
-              <option value="cafe">cafe</option>
-              <option value="blanco lechoso">blanco lechoso</option>
-              <option value="blanco con mancha">blanco con mancha</option>
-     
-            </select>
-        
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Clase
-            </label>
-            <select
-              id="animalType"
-              name="animalType"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-                
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-            </select>
-
-            
-
-          <div className="mt-4">
-          <button
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border rounded"
-            onClick={() => handleButtonClick("/dashboard")}
+            Densidad
+          </label>
+          <select
+            id="animalType"
+            name="animalType"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            Enviar
-          </button>
-        </div>
+            <option value="baja">baja</option>
+            <option value="media">media</option>
+            <option value="buena">buena</option>
+            <option value="alta">alta</option>
+          </select>
+
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Definicion
+          </label>
+          <select
+            id="animalType"
+            name="animalType"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option value="baja">baja</option>
+            <option value="media">media</option>
+            <option value="buena">buena</option>
+            <option value="alta">alta</option>
+          </select>
+
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Calce
+          </label>
+          <select
+            id="animalType"
+            name="animalType"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option value="baja">baja</option>
+            <option value="media">media</option>
+            <option value="buena">buena</option>
+            <option value="alta">alta</option>
+          </select>
+
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Uniformidad
+          </label>
+          <input
+            type="text"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="ej: vellon no uniforme"
+          />
+
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Tuco
+          </label>
+          <select
+            id="animalType"
+            name="animalType"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option value="baja">baja</option>
+            <option value="media">media</option>
+            <option value="no">no</option>
+          </select>
+
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Color
+          </label>
+          <select
+            id="animalType"
+            name="animalType"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option value="cafe">cafe</option>
+            <option value="blanco lechoso">blanco lechoso</option>
+            <option value="blanco con mancha">blanco con mancha</option>
+          </select>
+
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Clase
+          </label>
+          <select
+            id="animalType"
+            name="animalType"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+
+          <h2 className="text-xl font-medium leading-7 text-gray-900">
+            Vellon
+          </h2>
+
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Largo mecha
+          </label>
+          <input
+            type="decimal"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="ej: 6.5"
+          />
+
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Referencia Rizos
+          </label>
+          <input
+            type="text"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="ej: No,leve,si"
+          />
+
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Diametro
+          </label>
+          <input
+            type="decimal"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="ej: 19.94"
+          />
+          
+          <div className="mt-2">
+            <label className="block text-sm font-medium leading-6 text-gray-900">
+              Observaciones
+            </label>
+            <textarea
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="Ingrese observaciones"
+            />
+          </div>
+          <div className="mt-4">
+            <button
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border rounded"
+              onClick={() => handleButtonClick("/dashboard")}
+            >
+              Enviar
+            </button>
+          </div>
         </form>
       </div>
     </div>
