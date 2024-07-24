@@ -5,6 +5,7 @@ function NewRegister() {
   const navigate = useNavigate();
 
   const handleButtonClick = (path:string) => {
+    alert("No se envio ningun registro!");
     navigate(path); // Redirige a la ruta del dashboard
   };
 
@@ -60,8 +61,8 @@ function NewRegister() {
       const result = await response.json();
       console.log("Response:", result);
 
-      if (result.state === "1") {
-        alert("se registrocon exito!")
+      if (result.message === "Data saved") {
+        alert("¡Se registró con éxito!");
         navigate("/dashboard"); // Redirige a la ruta del dashboard
       } else {
         alert("Error en el registro.");

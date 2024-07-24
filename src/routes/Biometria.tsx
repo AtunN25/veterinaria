@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const today = new Date();
+/*const today = new Date();
 today.setDate(today.getDate() - 1); // Restar un día
-const formattedDate = today.toISOString().split("T")[0];
+const formattedDate = today.toISOString().split("T")[0];*/
 
 function Biometria() {
   const navigate = useNavigate();
@@ -18,28 +18,32 @@ function Biometria() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
     // Recolecta los datos del formulario
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const data = {
+      peso:formData.get("peso"),
       arete: formData.get("arete"),
-      cDentaria: formData.get("CNdiente") || null,
-      caninos: formData.get("canino") || null,
-      //peso: formData.get("peso") || null,
-      condicionCorporal: formData.get("Ccorporal") || null,
-      largoCabeza: formData.get("Lcabeza") || null,
-      anchoCabeza: formData.get("Acabeza") || null,
-      largoOreja: formData.get("Loreja") || null,
-      largoCuello: formData.get("Lcuello") || null,
-      largoCuerpo: formData.get("Lcuerpo") || null,
-      alturaCruz: formData.get("ALcruz") || null,
-      anchoGrupa: formData.get("ANgrupa") || null,
-      alturaGrupa: formData.get("ALgrupa") || null,
-      amplitudPecho: formData.get("AMpecho") || null,
-      aplomoAnterior: formData.get("APanterior") || null,
-      aplomoPosterior: formData.get("APposterior") || null,
-      CIcuerpo: formData.get("CIcuerpo") || null,
-      isquiones: formData.get("isquiones") || null,
+      CNdiente: formData.get("CNdiente") ,
+      canino: formData.get("canino") ,
+      Ccorporal: formData.get("Ccorporal") ,
+      Lcabeza: formData.get("Lcabeza") ,
+      Acabeza: formData.get("Acabeza") ,
+      Loreja: formData.get("Loreja") ,
+      Lcuello: formData.get("Lcuello") ,
+      Lcuerpo: formData.get("Lcuerpo") ,
+      ALcruz: formData.get("ALcruz") ,
+      ANgrupa: formData.get("ANgrupa") ,
+      ALgrupa: formData.get("ALgrupa") ,
+      AMpecho: formData.get("AMpecho") ,
+      APanterior: formData.get("APanterior") ,
+      APposterior: formData.get("APposterior") ,
+      CIcuerpo: formData.get("CIcuerpo") ,
+      isquiones: formData.get("isquiones") ,
+      TDEancho: formData.get("TDEancho") || null,
+      TDElargo: formData.get("TDElargo") || null,
+      TIZancho: formData.get("TIZancho") || null,
+      TIZlargo: formData.get("TIZlargo") || null,
+      COvulvar: formData.get("COvulvar") || null,
     };
 
     try {
@@ -113,7 +117,7 @@ function Biometria() {
           />
         </div>
 
-        {/*} <div className="mt-2">
+        <div className="mt-2">
           <label className="block text-sm font-medium leading-6 text-gray-900">
             Peso
           </label>
@@ -123,7 +127,7 @@ function Biometria() {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder=""
           />
-        </div>*/}
+        </div>
 
         <div className="mt-2">
           <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -132,6 +136,7 @@ function Biometria() {
           <input
             type="number"
             step="0.1"
+            name="Ccorporal"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Ingrese altura de grupa"
           />
