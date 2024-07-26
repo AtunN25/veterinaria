@@ -1,28 +1,28 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-/*const today = new Date();
-today.setDate(today.getDate() - 1); // Restar un día
-const formattedDate = today.toISOString().split("T")[0];*/
 
 function Biometria() {
   const navigate = useNavigate();
 
   const handleButtonClick = (path: string) => {
+    localStorage.removeItem("animalData");
     navigate(path); // Redirige a la ruta del dashboard
   };
 
-  type Sexo = "macho" | "hembra";
+  const animalData = localStorage.getItem("animalData");
+  const parsedAnimalData = animalData ? JSON.parse(animalData) : null;
 
-  const [sexo] = React.useState<Sexo>("macho"); // Puedes inicializar con "macho" o "hembra"
+  const [sexo] = React.useState(parsedAnimalData.sexo); // Puedes inicializar con "macho" o "hembra"
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    
     // Recolecta los datos del formulario
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const data = {
       peso:formData.get("peso"),
-      arete: formData.get("arete"),
+      arete: parsedAnimalData.arete,
       CNdiente: formData.get("CNdiente") ,
       canino: formData.get("canino") ,
       Ccorporal: formData.get("Ccorporal") ,
@@ -48,15 +48,17 @@ function Biometria() {
 
     try {
       // Aquí deberías hacer la llamada a tu API para enviar los datos
-      const response = await fetch("/api/biometria", {
+      const response = await fetch("https://veterinaria-production-b14c.up.railway.app/api/v1/form/biometria", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
-
+      console.log(JSON.stringify(data))
       if (response.ok) {
+        localStorage.removeItem("animalData");
+        alert("Enviado con exito!!")
         handleButtonClick("/dashboard");
       } else {
         console.error("Error al enviar los datos:", response.statusText);
@@ -68,23 +70,12 @@ function Biometria() {
 
   return (
     <div className="p-4 rounded-sm">
-      <h2 className="text-xl font-bold leading-7 text-gray-900">Biometria</h2>
+      <h2 className="text-xl font-bold leading-7 text-gray-900">Biometria {parsedAnimalData.arete} sexo : {parsedAnimalData.sexo}</h2>
 
       <form onSubmit={handleSubmit}>
-        <div className="mt-2">
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Arete
-          </label>
-          <input
-            name="arete"
-            type="text"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ingrese ancho de grupa"
-          />
-        </div>
-
+       
         <label className="block text-sm font-medium leading-6 text-gray-900">
-          CI cuerpo
+          Circunferencia del cuerpo
         </label>
         <input
           name="CIcuerpo"
@@ -124,8 +115,9 @@ function Biometria() {
           <input
             type="number"
             step="0.1"
+            name="peso"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder=""
+            placeholder="ingrese el peso"
           />
         </div>
 
@@ -138,7 +130,7 @@ function Biometria() {
             step="0.1"
             name="Ccorporal"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ingrese altura de grupa"
+            placeholder="Ingrese la condicion corporal"
           />
         </div>
 
@@ -152,7 +144,7 @@ function Biometria() {
             type="number"
             step="0.1"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ingrese altura de grupa"
+            placeholder="Ingrese el largo de cabeza en centimetros"
           />
         </div>
 
@@ -165,7 +157,7 @@ function Biometria() {
             type="number"
             step="0.1"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ingrese altura de grupa"
+            placeholder="Ingrese el ancho de cabeza en centimetros"
           />
         </div>
 
@@ -178,7 +170,7 @@ function Biometria() {
             name="Loreja"
             type="number"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ingrese orejas"
+            placeholder="Ingrese el largo de oreja en centimetros"
           />
         </div>
 
@@ -191,7 +183,7 @@ function Biometria() {
             name="Lcuello"
             type="number"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ingrese orejas"
+            placeholder="Ingrese el largo del cuellos en centimetros"
           />
         </div>
         {/* Longitud del Cuerpo */}
@@ -204,7 +196,7 @@ function Biometria() {
             type="number"
             step="0.1"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ingrese longitud del cuerpo"
+            placeholder="Ingrese el largo del cuerpo grupa en centimetros"
           />
         </div>
 
@@ -218,7 +210,7 @@ function Biometria() {
             type="number"
             step="0.1"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ingrese altura de cruz"
+            placeholder="Ingrese altura de cruz grupa en centimetros"
           />
         </div>
 
@@ -231,7 +223,7 @@ function Biometria() {
             name="ANgrupa"
             type="number"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ingrese ancho de grupa"
+            placeholder="Ingrese ancho de grupa en centimetros"
           />
         </div>
 
@@ -245,7 +237,7 @@ function Biometria() {
             type="number"
             step="0.1"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ingrese longitud del cuerpo"
+            placeholder="Ingrese la altura de grupa en centimetros"
           />
         </div>
 
@@ -259,7 +251,7 @@ function Biometria() {
             type="number"
             step="0.1"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ingrese longitud del cuerpo"
+            placeholder="Ingrese la amplitud del pecho en centimetros"
           />
         </div>
 
@@ -273,8 +265,9 @@ function Biometria() {
               id="colorSelect"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option value="normal">Normal</option>
-              <option value="cerrado">Cerrado</option>
+              <option value="Abierto">Abierto</option>
+              <option value="Cerrado">Cerrado</option>
+              <option value="Patizambo">Patizambo</option>
             </select>
           </div>
         </div>
@@ -289,8 +282,9 @@ function Biometria() {
               id="colorSelect"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option value="normal">Normal</option>
-              <option value="cerrado">Patizambo</option>
+              <option value="Abierto">Abierto</option>
+              <option value="Cerrado">Cerrado</option>
+              <option value="Patizambo">Patizambo</option>
             </select>
           </div>
         </div>
@@ -303,20 +297,11 @@ function Biometria() {
             name="isquiones"
             type="number"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="ej: 2.1"
+            placeholder="ingrese la distancia de isquiones en centimetros"
           />
         </div>
 
-        {/*<div className="mt-2">
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Observaciones
-          </label>
-          <textarea
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ingrese observaciones"
-          />
-        </div>*/}
-
+      
         {sexo === "hembra" ? (
           <div className="mt-2">
             <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -388,7 +373,7 @@ function Biometria() {
             className="bg-slate-800 hover:bg-green-700 text-white font-bold py-2 px-4 border rounded"
             onClick={() => handleButtonClick("/dashboard")}
           >
-            Enviar
+            Regresar
           </button>
         </div>
       </form>

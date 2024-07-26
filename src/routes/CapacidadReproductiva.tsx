@@ -1,110 +1,248 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
-
-const today = new Date();
-today.setDate(today.getDate() - 1); // Restar un día
-const formattedDate = today.toISOString().split("T")[0];
 
 function CapacidadReproductiva() {
   const navigate = useNavigate();
+
   const handleButtonClick = (path: string) => {
+    localStorage.removeItem("animalData");
     navigate(path); // Redirige a la ruta del dashboard
   };
+
+  const animalData = localStorage.getItem("animalData");
+  const parsedAnimalData = animalData ? JSON.parse(animalData) : null;
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget as HTMLFormElement);
+
+    const toSeconds = (hours: string, minutes: string, seconds: string) => {
+      const h = parseInt(hours) || 0;
+      const m = parseInt(minutes) || 0;
+      const s = parseInt(seconds) || 0;
+      return h * 3600 + m * 60 + s;
+    };
+
+    const impetuTotalSegundos = toSeconds(
+      formData.get("impetuHoras")?.toString() || "0",
+      formData.get("impetuMinutos")?.toString() || "0",
+      formData.get("impetuSegundos")?.toString() || "0"
+    );
+
+    const derriboTotalSegundos = toSeconds(
+      formData.get("derriboHoras")?.toString() || "0",
+      formData.get("derriboMinutos")?.toString() || "0",
+      formData.get("derriboSegundos")?.toString() || "0"
+    );
+
+    const tCopulaTotalSegundos = toSeconds(
+      formData.get("tCopulaHoras")?.toString() || "0",
+      formData.get("tCopulaMinutos")?.toString() || "0",
+      formData.get("tCopulaSegundos")?.toString() || "0"
+    );
+
+    const tPenetracionTotalSegundos = toSeconds(
+      formData.get("tPenetracionHoras")?.toString() || "0",
+      formData.get("tPenetracionMinutos")?.toString() || "0",
+      formData.get("tPenetracionSegundos")?.toString() || "0"
+    );
+
+    const data = {
+      snd_gutural: formData.get("snd_gutural")?.toString(),
+      impetu: impetuTotalSegundos,
+      derribo: derriboTotalSegundos,
+      t_copula: tCopulaTotalSegundos,
+      t_penetracion: tPenetracionTotalSegundos,
+      obs: formData.get("obs")?.toString(),
+      macho: parsedAnimalData?.arete,
+      n_derribo: parseInt(formData.get("n_derribo")?.toString() || "0"),
+      hembra: formData.get("hembra")?.toString(),
+    };
+
+    try {
+      const response = await fetch("https://veterinaria-production-b14c.up.railway.app/api/v1/form/reproduccion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert("Registrado con éxito!");
+        localStorage.removeItem("animalData");
+        handleButtonClick("/dashboard");
+      } else {
+        console.error("Error al enviar los datos:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+    }
+  };
+
   return (
     <div className="p-4 rounded-sm">
       <h2 className="text-xl font-bold leading-7 text-gray-900">
-        Capacidad Reproductiva
+        Capacidad Reproductiva {parsedAnimalData ? `- Arete: ${parsedAnimalData.arete}` : ""}
       </h2>
 
-      <form>
-        <label className="block text-sm font-medium leading-6 text-gray-900">
-          Fecha de Registro
-        </label>
-        <div className="relative max-w-sm">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-            <svg
-              className="w-4 h-4 text-gray-500 dark:text-gray-400"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-            </svg>
-          </div>
-          <input
-            type="date"
-            name="date"
-            defaultValue={formattedDate}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Select date"
-          ></input>
-        </div>
-
+      <form onSubmit={handleSubmit}>
         <div className="mt-2">
           <label className="block text-sm font-medium leading-6 text-gray-900">
-            Sonidos graduales
+            Sonidos guturales
           </label>
           <select
-            id="bodyCondition"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            name="snd_gutural"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5"
           >
-            <option value="bajo">bajo</option>
-            <option value="medio">medio</option>
-            <option value="salto">alto</option>
+            <option value="Bajo">bajo</option>
+            <option value="Medio">medio</option>
+            <option value="Alto">alto</option>
           </select>
 
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Impetu en segundos
+          <label className="block text-sm font-medium leading-6 text-gray-900 mt-4">
+            Ímpetu en horas, minutos y segundos
+          </label>
+          <div className="mt-2 flex space-x-4">
+            <input
+              type="number"
+              name="impetuHoras"
+              placeholder="Horas"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
+            />
+            <input
+              type="number"
+              name="impetuMinutos"
+              placeholder="Minutos"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
+            />
+            <input
+              type="number"
+              name="impetuSegundos"
+              placeholder="Segundos"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
+            />
+          </div>
+
+          <label className="block text-sm font-medium leading-6 text-gray-900 mt-4">
+            Derribo en horas, minutos y segundos
+          </label>
+          <div className="mt-2 flex space-x-4">
+            <input
+              type="number"
+              name="derriboHoras"
+              placeholder="Horas"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
+            />
+            <input
+              type="number"
+              name="derriboMinutos"
+              placeholder="Minutos"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
+            />
+            <input
+              type="number"
+              name="derriboSegundos"
+              placeholder="Segundos"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
+            />
+          </div>
+
+          <label className="block text-sm font-medium leading-6 text-gray-900 mt-4">
+            Tiempo de cópula en horas, minutos y segundos
+          </label>
+          <div className="mt-2 flex space-x-4">
+            <input
+              type="number"
+              name="tCopulaHoras"
+              placeholder="Horas"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
+            />
+            <input
+              type="number"
+              name="tCopulaMinutos"
+              placeholder="Minutos"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
+            />
+            <input
+              type="number"
+              name="tCopulaSegundos"
+              placeholder="Segundos"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
+            />
+          </div>
+
+          {/*<label className="block text-sm font-medium leading-6 text-gray-900 mt-4">
+            Tiempo hasta la penetración en horas, minutos y segundos
+          </label>
+          <div className="mt-2 flex space-x-4">
+            <input
+              type="number"
+              name="tPenetracionHoras"
+              placeholder="Horas"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
+            />
+            <input
+              type="number"
+              name="tPenetracionMinutos"
+              placeholder="Minutos"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
+            />
+            <input
+              type="number"
+              name="tPenetracionSegundos"
+              placeholder="Segundos"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
+            />
+          </div>*/}
+
+          <label className="block text-sm font-medium leading-6 text-gray-900 mt-4">
+            Número de derribo
           </label>
           <input
             type="number"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="ej: 1s"
+            name="n_derribo"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5"
+            placeholder="Ej: 1"
           />
 
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Derribo en segundos
+          <label className="block text-sm font-medium leading-6 text-gray-900 mt-4">
+            Hembra
           </label>
           <input
-            type="number"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="ej: 1s"
-          />
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Tiempo de copula en segundos
-          </label>
-          <input
-            type="number"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="ej: 1s"
-          />
-
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Tiempo hasta la penetracion en segundos
-          </label>
-          <input
-            type="number"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="ej: 1s"
+            type="text"
+            name="hembra"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5"
           />
         </div>
-        
+
         <div className="mt-2">
           <label className="block text-sm font-medium leading-6 text-gray-900">
             Observaciones
           </label>
           <textarea
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            name="obs"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5"
             placeholder="Ingrese observaciones"
           />
         </div>
 
         <div className="mt-4">
           <button
+            type="submit"
             className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border rounded"
-            onClick={() => handleButtonClick("/dashboard")}
           >
             Enviar
+          </button>
+        </div>
+        <div className="mt-4">
+          <button
+            type="button"
+            className="bg-slate-800 hover:bg-green-700 text-white font-bold py-2 px-4 border rounded"
+            onClick={() => handleButtonClick("/dashboard")}
+          >
+            Regresar
           </button>
         </div>
       </form>

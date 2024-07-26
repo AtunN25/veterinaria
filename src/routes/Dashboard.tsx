@@ -1,55 +1,105 @@
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
-const validAretes = [
-  {
-    arete: "H-9",
-    gender: "M",
-  },
-  {
-    arete: "HC-09",
-    gender: "M",
-  },
-  {
-    arete: "H-24",
-    gender: "F",
-  },
-  {
-    arete: "S-01",
-    gender: "F",
-  },
-];
 
 function Dashboard() {
   const navigate = useNavigate();
 
-  const handleButtonClick = (path: string) => {
+  const handleButtonClick = async (path: string) => {
     if (path === "/newregister") {
       navigate(path);
     } else {
-      const arete = prompt("Ingrese el código de arete de la llama:");
+
+      const { value: arete } = await Swal.fire({
+        title: 'Ingrese el código de arete de la llama:',
+        input: 'text',
+        inputAttributes: {
+          autocapitalize: 'characters',
+          placeholder: 'Código de arete',
+        },
+        html: '<small style="display: block; margin-top: 10px;">Use letras mayúsculas</small>',
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar',
+        inputValidator: (value) => {
+          if (!value) {
+            return '¡Necesita escribir algo!';
+          }
+          return null;
+        }
+      });
 
       if (arete) {
-        const animal = validAretes.find((a) => a.arete === arete);
+        try {
+          const response = await fetch("https://veterinaria-production-b14c.up.railway.app/api/v1/animal/status", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ arete }),
+          });
 
-        if (animal) {
-          if (
-            (path === "/muestras" || path === "/capacidadreproductiva") &&
-            animal.gender !== "M"
-          ) {
-            alert("!ERROR! El formulario es solo para animales Machos.");
-          } else if (path === "/femaleform" && animal.gender !== "F") {
-            alert("!ERROR! El formulario es solo para animales Hembras.");
+          if (response.ok) {
+            const data = await response.json();
+            console.log(data)
+            const animal = data[0];
+
+            if (animal && animal.sexo) {
+              const animalData = { arete, sexo: animal.sexo };
+              console.log(animalData)
+
+              await Swal.fire({
+                icon: 'success',
+                title: '¡Animal encontrado con éxito!',
+                text: `Arete: ${arete}Sexo del animal: ${animal.sexo}`
+              });
+
+              localStorage.setItem("animalData", JSON.stringify(animalData));
+
+              if (
+                (path === "/muestras" || path === "/capacidadreproductiva") &&
+                animal.sexo !== "Macho"
+              ) {
+                await Swal.fire({
+                  icon: 'error',
+                  title: '¡ERROR!',
+                  text: 'El formulario es solo para animales Machos.'
+                });
+              } else if (path === "/femaleform" && animal.sexo !== "Hembra") {
+                await Swal.fire({
+                  icon: 'error',
+                  title: '¡ERROR!',
+                  text: 'El formulario es solo para animales Hembras.'
+                });
+              } else {
+                navigate(`${path}?sexo=${animal.sexo}`);
+              }
+            } else {
+              await Swal.fire({
+                icon: 'error',
+                title: '¡ERROR!',
+                text: 'Código de arete no se encuentra registrado. Por favor, vuelva a intentarlo.'
+              });
+            }
           } else {
-            navigate(path);
+            await Swal.fire({
+              icon: 'error',
+              title: '¡ERROR!',
+              text: 'Código de arete no se encuentra registrado. El servidor no envio repuesta'
+            });
           }
-        } else {
-          alert(
-            "!ERROR! Código de arete no se encuentra registrado. Por favor, vuelva a intentarlo."
-          );
+        } catch (error) {
+          console.error("Error al validar el código de arete:", error);
+          await Swal.fire({
+            icon: 'error',
+            title: '¡ERROR!',
+            text: 'Ocurrió un error al validar el código de arete. Por favor, vuelva a intentarlo.'
+          });
         }
       }
     }
   };
+
 
   return (
     <div>

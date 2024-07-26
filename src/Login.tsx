@@ -2,6 +2,7 @@ import "./App.css";
 import al from "./assets/al.jpg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 function Login() {
   const navigate = useNavigate();
@@ -47,10 +48,17 @@ function Login() {
       console.log("State:", state);
 
       if (state === "1") {
-        alert("Usuario correcto")
+        await Swal.fire({
+          icon: 'success',
+          title: '¡Usuario correto!',
+        });
         navigate("/dashboard"); // Redirige a la ruta del dashboard
       } else {
-        alert("Nombre de usuario o contraseña incorrectos.");
+        await Swal.fire({
+          icon: 'error',
+          title: '¡ERROR!',
+          text: "Nombre de usuario o contraseña incorrectos."
+        });
       }
     } else {
       throw new Error("Unexpected response format");

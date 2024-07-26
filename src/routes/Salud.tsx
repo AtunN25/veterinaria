@@ -88,24 +88,7 @@ function Muestras() {
           </div>
         </div>
 
-{/*}
-        <label className="block text-base font-medium leading-6 text-gray-900">
-          Temperatura en C - vagina artificial
-        </label>
 
-        <div className="mt-2">
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Inicio
-          </label>
-          <div className="mt-2">
-            <input
-              type="number"
-              name="Tinicio"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              defaultValue="0"
-            />
-          </div>
-        </div>*/}
 
         <div className="mt-2">
           <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -170,6 +153,7 @@ function Muestras() {
             Enviar
           </button>
         </div>
+        
       </form>
     </div>
   );
