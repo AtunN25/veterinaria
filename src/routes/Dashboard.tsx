@@ -1,9 +1,69 @@
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
-
+import {useState,useEffect} from 'react'
 
 function Dashboard() {
   const navigate = useNavigate();
+
+  const [count, setCount] = useState<number>(0);
+
+  const handleDownload = async (type: string) => {
+    try {
+      const response = await fetch(`https://veterinaria-production-b14c.up.railway.app/api/v1/download/${type}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const blob = await response.blob();
+      const urlBlob = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = urlBlob;
+      a.download = `Sabana-${type}.xlsx`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Error downloading the file:', error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://veterinaria-production-b14c.up.railway.app/api/v1/animal/count', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+
+        // Asegúrate de acceder correctamente a la estructura de la respuesta
+        if (Array.isArray(data) && data.length > 0 && data[0].count) {
+          setCount(Number(data[0].count));
+        } else {
+          throw new Error('Invalid data structure');
+        }
+      } catch (error) {
+        console.error('Error fetching animal count:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
 
   const handleButtonClick = async (path: string) => {
     if (path === "/newregister") {
@@ -114,11 +174,13 @@ function Dashboard() {
             />
             <div className="px-3 text-left rtl:text-right">
               <div className="mb-1 text-xs">Cantidad de Animales</div>
-              <div className="-mt-1 font-sans text-sm font-semibold">27</div>
+              <div className="-mt-1 font-sans text-sm font-semibold">{count}</div>
             </div>
           </div>
         </div>
-        <button className="bg-green-900 text-white rounded-lg inline-flex items-center justify-center px-2 ">
+        <button className="bg-green-900 text-white rounded-lg inline-flex items-center justify-center px-2 "
+        onClick={() => handleDownload('General')}
+        >
           <img
             width="30"
             height="30"
@@ -226,7 +288,7 @@ function Dashboard() {
       <div className="flex items-center rounded  shadow-lg  p-2 space-x-2 justify-center">
         <button
           className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
-          onClick={() => handleButtonClick("/")}
+          onClick={() => handleDownload('Macho')}
         >
           <img
             width="30"
@@ -241,7 +303,7 @@ function Dashboard() {
 
         <button
           className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
-          onClick={() => handleButtonClick("/")}
+          onClick={() => handleDownload('Hembra')}
         >
           <img
             width="30"
