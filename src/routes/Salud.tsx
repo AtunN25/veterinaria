@@ -66,7 +66,7 @@ function Muestras() {
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
           <option value="1">vitamina</option>
-          <option value="2">antiparacitario</option>
+          <option value="2">antiparasitario</option>
         </select>
 
         <div className="mt-4">

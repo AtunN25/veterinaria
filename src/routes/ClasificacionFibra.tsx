@@ -54,7 +54,7 @@ function ClasificacionFibra() {
           title: "¡Se registró con éxito!",
         });
         localStorage.removeItem("animalData");
-        handleButtonClick("/dashboard");
+        navigate("/dashboard");
       } else {
         await Swal.fire({
           icon: "error",
@@ -143,13 +143,25 @@ function ClasificacionFibra() {
           Color
         </label>
         <select
-          name="color"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        >
-          <option value="cafe">cafe</option>
-          <option value="blanco lechoso">blanco lechoso</option>
-          <option value="blanco con mancha">blanco con mancha</option>
-        </select>
+        name="color"
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        style={{ WebkitAppearance: "none", appearance: "none" }}
+      >
+        <option value="">Selecciona Color</option>
+         <option className="bg-stone-100 text-black" value="blanco">Blanco</option>
+        <option className="bg-orange-300 text-black" value="crema-claro">Crema claro</option>
+        <option className="bg-orange-400 text-black" value="crema-medio">Crema medio</option>
+        <option className="bg-orange-600 text-white" value="crema-oscuro">Crema oscuro</option>
+        <option className="bg-amber-700 text-black" value="cafe-claro">Café claro</option>
+        <option className="bg-amber-900 text-white" value="cafe-medio">Café medio</option>
+        <option className="bg-amber-950 text-white" value="cafe-oscuro">Café oscuro</option>
+        {/* <option className="bg-yellow-900 text-white" value="marron">Marrón</option> */}
+        {/* <option className="bg-yellow-500 text-black" value="api">Api</option> */}
+        <option className="bg-gray-400 text-black" value="gris-claro">Gris claro</option>
+        <option className="bg-gray-500 text-black" value="gris-indefinido">Gris indefinido</option>
+        <option className="bg-gray-700 text-white" value="gris-oscuro">Gris oscuro</option>
+        <option className="bg-gray-900 text-white" value="negro">Negro</option>
+      </select>
 
         <label className="block text-sm font-medium leading-6 text-gray-900">
           Clase

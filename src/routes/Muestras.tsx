@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-
 function Muestras() {
   const navigate = useNavigate();
 
@@ -17,7 +16,6 @@ function Muestras() {
 
   const animalData = localStorage.getItem("animalData");
   const parsedAnimalData = animalData ? JSON.parse(animalData) : null;
-
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -38,14 +36,17 @@ function Muestras() {
     };
 
     try {
-      const response = await fetch("https://veterinaria-production-b14c.up.railway.app/api/v1/form/muestra", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      console.log(JSON.stringify(data))
+      const response = await fetch(
+        "https://veterinaria-production-b14c.up.railway.app/api/v1/form/muestra",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      console.log(JSON.stringify(data));
 
       if (response.ok) {
         await Swal.fire({
@@ -53,7 +54,7 @@ function Muestras() {
           title: "¡Se registró con éxito!",
         });
         localStorage.removeItem("animalData");
-        handleButtonClick("/dashboard");
+        navigate("/dashboard");
       } else {
         await Swal.fire({
           icon: "error",
@@ -69,7 +70,8 @@ function Muestras() {
   return (
     <div className="p-4 rounded-sm">
       <h2 className="text-xl font-bold leading-7 text-gray-900">
-        Muestras de semen {parsedAnimalData ? `- Arete: ${parsedAnimalData.arete}` : ""}
+        Muestras de semen{" "}
+        {parsedAnimalData ? `- Arete: ${parsedAnimalData.arete}` : ""}
       </h2>
 
       <form onSubmit={handleSubmit}>
@@ -146,11 +148,15 @@ function Muestras() {
           <label className="block text-sm font-medium leading-6 text-gray-900">
             Color
           </label>
-          <input
-            type="text"
+          <select
+            id="color"
             name="color"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          />
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black "
+          >
+            <option value="Blanco traslucido">Blanco traslucido</option>
+            <option value="Blanco Lechoso">Blanco Lechoso</option>
+            <option value="Blanco Cristalino">Blanco Cristalino</option>
+          </select>
         </div>
 
         <div className="mt-2">
@@ -188,13 +194,13 @@ function Muestras() {
 
         <button
           type="submit"
-           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border rounded"
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border rounded"
         >
           Enviar
         </button>
         <button
           type="button"
-           className="bg-slate-800 hover:bg-green-700 text-white font-bold py-2 px-4 border rounded"
+          className="bg-slate-800 hover:bg-green-700 text-white font-bold py-2 px-4 border rounded"
           onClick={() => handleButtonClick("/dashboard")}
         >
           Regresar

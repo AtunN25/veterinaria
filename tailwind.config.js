@@ -6,7 +6,10 @@ export default {
   ],
   theme: {
     extend: {backgroundColor: {
-      'blue-opacity': 'rgba(31, 41, 55, 0.8)', // Fondo azul oscuro con opacidad
+      'blue-opacity': 'rgba(31, 41, 55, 0.8)',
+      brown: {
+        600: '#A52A2A',
+      }, // Fondo azul oscuro con opacidad
     },},
   },
   plugins: [],

@@ -8,6 +8,7 @@ function Dashboard() {
   const [count, setCount] = useState<number>(0);
 
   const handleDownload = async (type: string) => {
+    console.log(type)
     try {
       const response = await fetch(`https://veterinaria-production-b14c.up.railway.app/api/v1/download/${type}`, {
         method: 'GET',
@@ -69,15 +70,13 @@ function Dashboard() {
     if (path === "/newregister") {
       navigate(path);
     } else {
-
-      const { value: arete } = await Swal.fire({
-        title: 'Ingrese el código de arete de la llama:',
+      const { value: areteinput } = await Swal.fire({
+        title: 'Ingrese el código de arete:',
         input: 'text',
         inputAttributes: {
           autocapitalize: 'characters',
           placeholder: 'Código de arete',
         },
-        html: '<small style="display: block; margin-top: 10px;">Use letras mayúsculas</small>',
         showCancelButton: true,
         confirmButtonText: 'Aceptar',
         cancelButtonText: 'Cancelar',
@@ -88,8 +87,9 @@ function Dashboard() {
           return null;
         }
       });
-
-      if (arete) {
+  
+      if (areteinput) {
+        const arete = areteinput.toUpperCase();
         try {
           const response = await fetch("https://veterinaria-production-b14c.up.railway.app/api/v1/animal/status", {
             method: "POST",
@@ -98,28 +98,16 @@ function Dashboard() {
             },
             body: JSON.stringify({ arete }),
           });
-
+  
           if (response.ok) {
             const data = await response.json();
-            console.log(data)
             const animal = data[0];
-
+  
             if (animal && animal.sexo) {
               const animalData = { arete, sexo: animal.sexo };
-              console.log(animalData)
-
-              await Swal.fire({
-                icon: 'success',
-                title: '¡Animal encontrado con éxito!',
-                text: `Arete: ${arete}Sexo del animal: ${animal.sexo}`
-              });
-
               localStorage.setItem("animalData", JSON.stringify(animalData));
-
-              if (
-                (path === "/muestras" || path === "/capacidadreproductiva") &&
-                animal.sexo !== "Macho"
-              ) {
+  
+              if ((path === "/muestras" || path === "/capacidadreproductiva") && animal.sexo !== "Macho") {
                 await Swal.fire({
                   icon: 'error',
                   title: '¡ERROR!',
@@ -132,6 +120,11 @@ function Dashboard() {
                   text: 'El formulario es solo para animales Hembras.'
                 });
               } else {
+                await Swal.fire({
+                  icon: 'success',
+                  title: '¡Éxito!',
+                  text: `Se encontró el arete y se confirmó el sexo: ${animal.sexo}`
+                });
                 navigate(`${path}?sexo=${animal.sexo}`);
               }
             } else {
@@ -145,7 +138,7 @@ function Dashboard() {
             await Swal.fire({
               icon: 'error',
               title: '¡ERROR!',
-              text: 'Código de arete no se encuentra registrado. El servidor no envio repuesta'
+              text: 'Código de arete no se encuentra registrado. El servidor no envió respuesta'
             });
           }
         } catch (error) {
@@ -159,6 +152,7 @@ function Dashboard() {
       }
     }
   };
+  
 
 
   return (
@@ -418,7 +412,21 @@ function Dashboard() {
               </tr>
             </tbody>
           </table>
+
+         
         </div>
+
+         <div className="py-3 px-3 w-1/6">
+         <button
+            className="bg-red-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
+            onClick={() => navigate("/login")}
+          >
+            <div className="text-left rtl:text-right">
+              <div className="mb-1 text-bold ">Salir</div>
+            </div>
+          </button>
+         </div>
+          
       </div>
     </div>
   );

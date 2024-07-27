@@ -66,7 +66,7 @@ function Biometria() {
           icon: "success",
           title: "¡Se registró con éxito!",
         });
-        handleButtonClick("/dashboard");
+        navigate("/dashboard");
       } else {
         await Swal.fire({
           icon: "error",

@@ -6,7 +6,7 @@ function NewRegister() {
   const navigate = useNavigate();
 
   //ANIMALSTYPE
-  const [animalType, setAnimalType] = useState("");
+  const [animalType, setAnimalType] = useState("1");
   const [birthType, setBirthType] = useState("comprada");
 
   //DATE
@@ -145,8 +145,8 @@ function NewRegister() {
             name="tipo_ingreso"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black "
           >
-            <option value="comprada">Trazlado</option>
-            <option value="nacida">Nacimiento</option>
+            <option value="Comprada">Trazlado</option>
+            <option value="Nacida">Nacimiento</option>
           </select>
         </div>
 
@@ -169,14 +169,14 @@ function NewRegister() {
             <label className="block text-sm font-medium leading-6 text-gray-900">
               Raza
             </label>
-            {animalType === "llama" ? (
+            {animalType === "1" ? (
               <select
                 id="raza"
                 name="raza"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black "
               >
-                <option value="1">R1llama</option>
-                <option value="2">R2llama</option>
+                <option value="1">Chaku</option>
+                <option value="2">k'ara Warizo</option>
               </select>
             ) : (
               <select
@@ -184,15 +184,15 @@ function NewRegister() {
                 name="raza"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black "
               >
-                <option value="1">suri</option>
-                <option value="2">huacaya</option>
+                <option value="1">Suri</option>
+                <option value="2">Huacayo</option>
               </select>
             )}
           </div>
         </div>
 
         <div className="mt-2">
-          {birthType === "comprada" ? (
+          {birthType === "Comprada" ? (
             <div>
               <label className="block text-sm font-medium leading-6 text-gray-900">
                 Edad

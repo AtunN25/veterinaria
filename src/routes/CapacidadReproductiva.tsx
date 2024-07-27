@@ -81,7 +81,7 @@ function CapacidadReproductiva() {
           title: "¡Se registró con éxito!",
         });
         localStorage.removeItem("animalData");
-        handleButtonClick("/dashboard");
+        navigate("/dashboard");
       } else {
         await Swal.fire({
           icon: "error",

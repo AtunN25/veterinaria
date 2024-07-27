@@ -1,0 +1,6 @@
+.custom-select option:checked,
+.custom-select option:focus,
+.custom-select option:hover {
+  background-color: inherit; /* Mantener el color de fondo original */
+  color: inherit; /* Mantener el color de texto original */
+}
