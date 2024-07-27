@@ -1,22 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import Swal from "sweetalert2";
 
 function Muestras() {
   const navigate = useNavigate();
 
+  const handleButtonClick = (path: string) => {
+    localStorage.removeItem("animalData");
+    Swal.fire({
+      icon: "info",
+      text: "No se envio ningun registro!",
+    });
+    navigate(path); // Redirige a la ruta del dashboard
+  };
+
   const handleSubmit = async (event: React.FormEvent) => {
+    const animalData = localStorage.getItem("animalData");
+    const parsedAnimalData = animalData ? JSON.parse(animalData) : null;
     event.preventDefault();
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const data = {
-      maniqui: formData.get("maniqui"),
-      Hinicio: formData.get("Hinicio"),
-      Hfin: formData.get("Hfin"),
-      Tinicio: formData.get("Tinicio"),
-      Tfin: formData.get("Tfin"),
-      volumen: formData.get("volumen"),
-      color: formData.get("color"),
-      obs: formData.get("obs"),
-      arete: formData.get("arete")
+      producto: formData.get("numproducto"),
+      arete: parsedAnimalData.arete
     };
 
     try {
@@ -29,10 +34,17 @@ function Muestras() {
       });
 
       if (response.ok) {
-        console.log("Data sent successfully");
+        await Swal.fire({
+          icon: "success",
+          title: "¡Se registró con éxito!",
+        });
         navigate("/dashboard"); // Redirige a la ruta del dashboard
       } else {
-        console.error("Failed to send data:", response.statusText);
+        await Swal.fire({
+          icon: "error",
+          title: "¡ERROR!",
+          text: "Error en el registro.",
+        });
       }
     } catch (error) {
       console.error("Error:", error);
@@ -42,108 +54,20 @@ function Muestras() {
   return (
     <div className="p-4 rounded-sm">
       <h2 className="text-xl font-bold leading-7 text-gray-900">
-        Muestras de semen
+         Dosificacion
       </h2>
 
       <form onSubmit={handleSubmit}>
         <label className="block text-sm font-medium leading-6 text-gray-900">
-          Numero de maniqui
+          Ingrese el nombre del produco
         </label>
-        <input
-          type="number"
-          name="maniqui"
+        <select
+          name="numproducto"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          placeholder=""
-        />
-
-        <label className="block text-base font-medium leading-6 text-gray-900">
-          Tiempo de coleccion
-        </label>
-
-        <div className="mt-2">
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Hora de Inicio
-          </label>
-          <div className="mt-2">
-            <input
-              type="time"
-              name="Hinicio"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              defaultValue="00:00"
-            />
-          </div>
-        </div>
-
-        <div className="mt-2">
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Hora de Final
-          </label>
-          <div className="mt-2">
-            <input
-              type="time"
-              name="Hfin"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              defaultValue="00:00"
-            />
-          </div>
-        </div>
-
-
-
-        <div className="mt-2">
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Final
-          </label>
-          <div className="mt-2">
-            <input
-              type="number"
-              name="Tfin"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              defaultValue="0"
-            />
-          </div>
-        </div>
-
-        <div className="mt-2">
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Volumen
-          </label>
-          <div className="mt-2">
-            <input
-              type="number"
-              name="volumen"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              defaultValue="0"
-            />
-          </div>
-        </div>
-
-        <div className="mt-2">
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Selecciona un Color
-          </label>
-          <div className="mt-2">
-            <select
-              name="color"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            >
-              <option value="blanco-traslucido">Blanco Traslúcido</option>
-              <option value="blanco-lechoso">Blanco Lechoso</option>
-              <option value="blanco-cristalino">Blanco Cristalino</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="mt-2">
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Observaciones
-          </label>
-          <textarea
-            name="obs"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ingrese observaciones"
-          />
-        </div>
+        >
+          <option value="1">vitamina</option>
+          <option value="2">antiparacitario</option>
+        </select>
 
         <div className="mt-4">
           <button
@@ -153,7 +77,14 @@ function Muestras() {
             Enviar
           </button>
         </div>
-        
+        <div className="mt-4">
+          <button
+            className="bg-slate-800 hover:bg-green-700 text-white font-bold py-2 px-4 border rounded"
+            onClick={() => handleButtonClick("/dashboard")}
+          >
+            Regresar
+          </button>
+        </div>
       </form>
     </div>
   );

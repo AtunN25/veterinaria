@@ -208,7 +208,7 @@ function Dashboard() {
 
           <button
             className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
-            onClick={() => handleButtonClick("/capacidadreproductiva")}
+            onClick={() => handleButtonClick("/salud")}
           >
             <img
               width="30"

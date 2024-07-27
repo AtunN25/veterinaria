@@ -96,7 +96,7 @@ function NewRegister() {
       }
     } catch (error) {
       console.error("Error durante el registro:", error);
-      alert("Error durante el registro. Por favor, intenta de nuevo.");
+      alert("Error durante el registro. Por favor, intente registrar un arete nuevo y complete todos los campos.");
     }
   };
 

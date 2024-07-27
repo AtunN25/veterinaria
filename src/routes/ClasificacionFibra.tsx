@@ -1,17 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function ClasificacionFibra() {
   const navigate = useNavigate();
 
   const handleButtonClick = (path: string) => {
     localStorage.removeItem("animalData");
+    Swal.fire({
+      icon: "info",
+      text: "No se envio ningun registro!",
+    });
     navigate(path); // Redirige a la ruta del dashboard
   };
 
   const animalData = localStorage.getItem("animalData");
   const parsedAnimalData = animalData ? JSON.parse(animalData) : null;
-
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -29,24 +33,34 @@ function ClasificacionFibra() {
       referenciaRizos: formData.get("referenciaRizos"),
       diametro: formData.get("diametro"),
       observacion: formData.get("observacion"),
-      arete:  parsedAnimalData.arete,
+      arete: parsedAnimalData.arete,
     };
 
     try {
-      const response = await fetch("https://veterinaria-production-b14c.up.railway.app/api/v1/form/vellon", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      console.log(JSON.stringify(data))
+      const response = await fetch(
+        "https://veterinaria-production-b14c.up.railway.app/api/v1/form/vellon",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      console.log(JSON.stringify(data));
       if (response.ok) {
-        alert("enviando con exito!!")
+        await Swal.fire({
+          icon: "success",
+          title: "¡Se registró con éxito!",
+        });
         localStorage.removeItem("animalData");
         handleButtonClick("/dashboard");
       } else {
-        console.error("Error al enviar los datos:", response.statusText);
+        await Swal.fire({
+          icon: "error",
+          title: "¡ERROR!",
+          text: "Error en el registro.",
+        });
       }
     } catch (error) {
       console.error("Error al enviar los datos:", error);
@@ -56,7 +70,12 @@ function ClasificacionFibra() {
   return (
     <div className="p-4 rounded-sm">
       <h2 className="text-xl font-bold leading-7 text-gray-900">
-        Calificación de Fibra {parsedAnimalData ? `- Arete: ${parsedAnimalData.arete + "sexo:"+parsedAnimalData.sexo}` : ""}
+        Calificación de Fibra{" "}
+        {parsedAnimalData
+          ? `- Arete: ${
+              parsedAnimalData.arete + "sexo:" + parsedAnimalData.sexo
+            }`
+          : ""}
       </h2>
 
       <form onSubmit={handleSubmit}>
@@ -69,8 +88,8 @@ function ClasificacionFibra() {
         >
           <option value="Baja">baja</option>
           <option value="Media">media</option>
-          <option value="Buena">buena</option>
-          <option value="Alta">alta</option>
+          <option value="Bueno">bueno</option>
+          <option value="Alto">alto</option>
         </select>
 
         <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -82,8 +101,7 @@ function ClasificacionFibra() {
         >
           <option value="Baja">baja</option>
           <option value="Media">media</option>
-          <option value="Buena">buena</option>
-          <option value="Alta">alta</option>
+          <option value="Alto">alto</option>
         </select>
 
         <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -95,19 +113,20 @@ function ClasificacionFibra() {
         >
           <option value="Baja">baja</option>
           <option value="Media">media</option>
-          <option value="Buena">buena</option>
-          <option value="Alta">alta</option>
+          <option value="Alto">alto</option>
         </select>
 
         <label className="block text-sm font-medium leading-6 text-gray-900">
           Uniformidad
         </label>
-        <input
-          type="text"
+
+        <select
           name="uniformidad"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          placeholder="ej: vellon no uniforme"
-        />
+        >
+          <option value="0">si</option>
+          <option value="1">no</option>
+        </select>
 
         <label className="block text-sm font-medium leading-6 text-gray-900">
           Tuco
@@ -116,9 +135,8 @@ function ClasificacionFibra() {
           name="tuco"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
-          <option value="Baja">baja</option>
-          <option value="Media">media</option>
-          <option value="No">no</option>
+          <option value="0">si</option>
+          <option value="1">no</option>
         </select>
 
         <label className="block text-sm font-medium leading-6 text-gray-900">

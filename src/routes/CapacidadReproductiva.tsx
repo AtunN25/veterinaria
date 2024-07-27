@@ -1,11 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 
 function CapacidadReproductiva() {
   const navigate = useNavigate();
 
   const handleButtonClick = (path: string) => {
     localStorage.removeItem("animalData");
+    Swal.fire({
+      icon: "info",
+      text: "No se envio ningun registro!",
+    });
     navigate(path); // Redirige a la ruta del dashboard
   };
 
@@ -42,18 +48,18 @@ function CapacidadReproductiva() {
       formData.get("tCopulaSegundos")?.toString() || "0"
     );
 
-    const tPenetracionTotalSegundos = toSeconds(
+    /*const tPenetracionTotalSegundos = toSeconds(
       formData.get("tPenetracionHoras")?.toString() || "0",
       formData.get("tPenetracionMinutos")?.toString() || "0",
       formData.get("tPenetracionSegundos")?.toString() || "0"
-    );
+    );*/
 
     const data = {
       snd_gutural: formData.get("snd_gutural")?.toString(),
       impetu: impetuTotalSegundos,
       derribo: derriboTotalSegundos,
       t_copula: tCopulaTotalSegundos,
-      t_penetracion: tPenetracionTotalSegundos,
+      //t_penetracion: tPenetracionTotalSegundos,
       obs: formData.get("obs")?.toString(),
       macho: parsedAnimalData?.arete,
       n_derribo: parseInt(formData.get("n_derribo")?.toString() || "0"),
@@ -70,11 +76,18 @@ function CapacidadReproductiva() {
       });
 
       if (response.ok) {
-        alert("Registrado con éxito!");
+        await Swal.fire({
+          icon: "success",
+          title: "¡Se registró con éxito!",
+        });
         localStorage.removeItem("animalData");
         handleButtonClick("/dashboard");
       } else {
-        console.error("Error al enviar los datos:", response.statusText);
+        await Swal.fire({
+          icon: "error",
+          title: "¡ERROR!",
+          text: "Error en el registro,error al momento de ingresar el arete de la hembra",
+        });
       }
     } catch (error) {
       console.error("Error al enviar los datos:", error);

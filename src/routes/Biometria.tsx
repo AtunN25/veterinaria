@@ -1,12 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import Swal from "sweetalert2";
 
 function Biometria() {
   const navigate = useNavigate();
 
   const handleButtonClick = (path: string) => {
     localStorage.removeItem("animalData");
+    Swal.fire({
+      icon: "info",
+      text: "No se envio ningun registro!",
+    });
     navigate(path); // Redirige a la ruta del dashboard
   };
 
@@ -58,10 +62,17 @@ function Biometria() {
       console.log(JSON.stringify(data))
       if (response.ok) {
         localStorage.removeItem("animalData");
-        alert("Enviado con exito!!")
+        await Swal.fire({
+          icon: "success",
+          title: "¡Se registró con éxito!",
+        });
         handleButtonClick("/dashboard");
       } else {
-        console.error("Error al enviar los datos:", response.statusText);
+        await Swal.fire({
+          icon: "error",
+          title: "¡ERROR!",
+          text: "Error en el registro,complete todos los campos",
+        });
       }
     } catch (error) {
       console.error("Error al enviar los datos:", error);

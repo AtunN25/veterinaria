@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import Swal from "sweetalert2";
 
 
 function Muestras() {
@@ -8,6 +8,10 @@ function Muestras() {
 
   const handleButtonClick = (path: string) => {
     localStorage.removeItem("animalData");
+    Swal.fire({
+      icon: "info",
+      text: "No se envio ningun registro!",
+    });
     navigate(path); // Redirige a la ruta del dashboard
   };
 
@@ -26,6 +30,8 @@ function Muestras() {
       t_fin: formData.get("t_fin"),
       volumen: formData.get("volumen"),
       color: formData.get("color"),
+      filancia: formData.get("filancia"),
+      pH: formData.get("ph"),
       obs: formData.get("obs"),
       arete: parsedAnimalData ? parsedAnimalData.arete : null,
       maniqui: formData.get("maniqui"),
@@ -42,11 +48,18 @@ function Muestras() {
       console.log(JSON.stringify(data))
 
       if (response.ok) {
-        alert("Registrado con exito!!")
+        await Swal.fire({
+          icon: "success",
+          title: "¡Se registró con éxito!",
+        });
         localStorage.removeItem("animalData");
         handleButtonClick("/dashboard");
       } else {
-        console.error("Error al enviar los datos:", response.statusText);
+        await Swal.fire({
+          icon: "error",
+          title: "¡ERROR!",
+          text: "Error en el registro.",
+        });
       }
     } catch (error) {
       console.error("Error al enviar los datos:", error);
@@ -136,6 +149,28 @@ function Muestras() {
           <input
             type="text"
             name="color"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          />
+        </div>
+
+        <div className="mt-2">
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            ph
+          </label>
+          <input
+            type="number"
+            name="ph"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          />
+        </div>
+
+        <div className="mt-2">
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Filancia
+          </label>
+          <input
+            type="text"
+            name="filancia"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />
         </div>
