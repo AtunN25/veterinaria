@@ -26,7 +26,7 @@ function Muestras() {
     };
 
     try {
-      const response = await fetch("/api/your-endpoint", {
+      const response = await fetch("https://veterinaria-production-b14c.up.railway.app/api/v1/form/dosificacion", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
