@@ -45,14 +45,18 @@ function NewRegister() {
     const edadEnMeses =
       (edadAnios ? parseInt(edadAnios) * 12 : 0) +
       (edadMeses ? parseInt(edadMeses) : 0);
+      
+    const arete = formData.get("arete")?.toString().toUpperCase() || null;
+    const padre = formData.get("padre")?.toString().toUpperCase() || null;
+    const madre = formData.get("madre")?.toString().toUpperCase() || null;
 
     const data = {
-      arete: formData.get("arete") || null,
+      arete,
       sexo: formData.get("sexo"),
       especie: formData.get("especie"),
       raza: formData.get("raza"),
-      padre: formData.get("padre") || null,
-      madre: formData.get("madre") || null,
+      padre,
+      madre,
       tipo_ingreso: formData.get("tipo_ingreso"),
       fecha_ingreso: formData.get("fecha_ingreso"),
       edad: edadEnMeses || 0.0,

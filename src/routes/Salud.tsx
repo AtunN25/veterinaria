@@ -21,6 +21,7 @@ function Muestras() {
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const data = {
       producto: formData.get("numproducto"),
+      obs: formData.get("obs"),
       arete: parsedAnimalData.arete
     };
 
@@ -68,6 +69,17 @@ function Muestras() {
           <option value="1">vitamina</option>
           <option value="2">antiparasitario</option>
         </select>
+
+        <div className="mt-2">
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Observaciones
+          </label>
+          <textarea
+            name="obs"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5"
+            placeholder="Ingrese observaciones"
+          />
+        </div>
 
         <div className="mt-4">
           <button

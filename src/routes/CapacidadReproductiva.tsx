@@ -54,6 +54,7 @@ function CapacidadReproductiva() {
       formData.get("tPenetracionSegundos")?.toString() || "0"
     );*/
 
+    const hembra = formData.get("hembra")?.toString().toUpperCase() || null;
     const data = {
       snd_gutural: formData.get("snd_gutural")?.toString(),
       impetu: impetuTotalSegundos,
@@ -63,7 +64,7 @@ function CapacidadReproductiva() {
       obs: formData.get("obs")?.toString(),
       macho: parsedAnimalData?.arete,
       n_derribo: parseInt(formData.get("n_derribo")?.toString() || "0"),
-      hembra: formData.get("hembra")?.toString(),
+      hembra,
     };
 
     try {
