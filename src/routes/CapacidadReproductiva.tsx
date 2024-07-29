@@ -63,9 +63,21 @@ function CapacidadReproductiva() {
       //t_penetracion: tPenetracionTotalSegundos,
       obs: formData.get("obs")?.toString(),
       macho: parsedAnimalData?.arete,
-      n_derribo: parseInt(formData.get("n_derribo")?.toString() || "0"),
+      n_derribo: null,
       hembra,
     };
+
+    console.log(data)
+
+    // Verifica si los campos obligatorios están llenos
+    if (!data.snd_gutural || !data.impetu || !data.derribo || !data.t_copula || !data.macho) {
+      await Swal.fire({
+        icon: "error",
+        title: "¡ERROR!",
+        text: "Complete todos los campos obligatorios.",
+      });
+      return; // Evita el envío del formulario si hay campos vacíos
+    }
 
     try {
       const response = await fetch("https://veterinaria-production-b14c.up.railway.app/api/v1/form/reproduccion", {
@@ -186,40 +198,6 @@ function CapacidadReproductiva() {
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
             />
           </div>
-
-          {/*<label className="block text-sm font-medium leading-6 text-gray-900 mt-4">
-            Tiempo hasta la penetración en horas, minutos y segundos
-          </label>
-          <div className="mt-2 flex space-x-4">
-            <input
-              type="number"
-              name="tPenetracionHoras"
-              placeholder="Horas"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
-            />
-            <input
-              type="number"
-              name="tPenetracionMinutos"
-              placeholder="Minutos"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
-            />
-            <input
-              type="number"
-              name="tPenetracionSegundos"
-              placeholder="Segundos"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/12 p-2.5"
-            />
-          </div>*/}
-
-          <label className="block text-sm font-medium leading-6 text-gray-900 mt-4">
-            Número de derribo
-          </label>
-          <input
-            type="number"
-            name="n_derribo"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5"
-            placeholder="Ej: 1"
-          />
 
           <label className="block text-sm font-medium leading-6 text-gray-900 mt-4">
             Hembra

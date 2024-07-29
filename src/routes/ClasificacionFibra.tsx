@@ -36,6 +36,29 @@ function ClasificacionFibra() {
       arete: parsedAnimalData.arete,
     };
 
+    // Verifica si todos los campos están llenos
+    if (
+      !data.densidad ||
+      !data.definicion ||
+      !data.calce ||
+      !data.uniformidad ||
+      !data.tuco ||
+      !data.color ||
+      !data.clase ||
+      !data.LONmecha ||
+      !data.referenciaRizos ||
+      !data.diametro ||
+      //!data.observacion ||
+      !data.arete
+    ) {
+      await Swal.fire({
+        icon: "error",
+        title: "¡ERROR!",
+        text: "Complete todos los campos.",
+      });
+      return; // Evita el envío del formulario si hay campos vacíos
+    }
+
     try {
       const response = await fetch(
         "https://veterinaria-production-b14c.up.railway.app/api/v1/form/vellon",

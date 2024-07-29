@@ -402,13 +402,13 @@ function Dashboard() {
                     scope="col"
                     className="px-6 py-3 bg-gray-50 dark:bg-gray-800"
                   >
-                    Especie
+                    Sexo
                   </th>
                   <th
                     scope="col"
                     className="px-6 py-3 bg-gray-50 dark:bg-gray-800"
                   >
-                    Sexo
+                    Especie
                   </th>
                   <th
                     scope="col"
@@ -484,7 +484,7 @@ function Dashboard() {
                       {animal.diferencia_peso}
                     </td>
                     <td className="px-6 py-4 bg-gray-50 dark:bg-gray-800">
-                      {animal.rep_fecha}
+                      {animal.rep_fecha === null ? "No es macho" : animal.rep_fecha}
                     </td>
                     <td className="px-6 py-4 bg-gray-50 dark:bg-gray-800">
                       {animal.fecha_futura}

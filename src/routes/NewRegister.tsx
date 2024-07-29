@@ -7,7 +7,7 @@ function NewRegister() {
 
   //ANIMALSTYPE
   const [animalType, setAnimalType] = useState("1");
-  const [birthType, setBirthType] = useState("comprada");
+  const [birthType, setBirthType] = useState("Comprada");
 
   //DATE
   const today = new Date();
@@ -35,6 +35,8 @@ function NewRegister() {
     navigate(path); 
   };
 
+
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevenir el comportamiento por defecto del formulario
     const formData = new FormData(event.currentTarget);
@@ -46,9 +48,9 @@ function NewRegister() {
       (edadAnios ? parseInt(edadAnios) * 12 : 0) +
       (edadMeses ? parseInt(edadMeses) : 0);
       
-    const arete = formData.get("arete")?.toString().toUpperCase() || null;
-    const padre = formData.get("padre")?.toString().toUpperCase() || null;
-    const madre = formData.get("madre")?.toString().toUpperCase() || null;
+    const arete = formData.get("arete")?.toString().toUpperCase() ;
+    const padre = formData.get("padre")?.toString().toUpperCase() ;
+    const madre = formData.get("madre")?.toString().toUpperCase() ;
 
     const data = {
       arete,
@@ -61,6 +63,27 @@ function NewRegister() {
       fecha_ingreso: formData.get("fecha_ingreso"),
       edad: edadEnMeses || 0.0,
     };
+
+    //verificacion de campos nulos
+    if(data.tipo_ingreso == "Comprada"){
+      if (!data.arete || !data.sexo || !data.especie || !data.raza || !data.tipo_ingreso || !data.fecha_ingreso || data.edad === 0) {
+        await Swal.fire({
+          icon: "error",
+          title: "¡ERROR!",
+          text: "Complete todos los campos.",
+        });
+        return; // Evita el envío del formulario
+      }
+    }else if(data.tipo_ingreso == "Nacida"){ //Nacida
+      if (!data.arete || !data.sexo || !data.especie || !data.raza || !data.tipo_ingreso || !data.padre || !data.madre) {
+        await Swal.fire({
+          icon: "error",
+          title: "¡ERROR!",
+          text: "Complete todos los campos.",
+        });
+        return; // Evita el envío del formulario
+      }
+    }
 
     try {
       const response = await fetch(
@@ -179,8 +202,9 @@ function NewRegister() {
                 name="raza"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black "
               >
-                <option value="1">Chaku</option>
-                <option value="2">k'ara Warizo</option>
+                <option value="3">Chaku</option>
+                <option value="4">K'ara</option>
+                <option value="5">Warizo</option>
               </select>
             ) : (
               <select
@@ -189,7 +213,8 @@ function NewRegister() {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black "
               >
                 <option value="1">Suri</option>
-                <option value="2">Huacayo</option>
+                <option value="2">Huacaya</option>
+                <option value="5">Warizo</option>
               </select>
             )}
           </div>

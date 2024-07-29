@@ -25,6 +25,16 @@ function Muestras() {
       arete: parsedAnimalData.arete
     };
 
+    // Verifica si el campo requerido está lleno
+    if (!data.producto || !data.arete) {
+      await Swal.fire({
+        icon: "error",
+        title: "¡ERROR!",
+        text: "Complete todos los campos obligatorios.",
+      });
+      return; // Evita el envío del formulario si hay campos vacíos
+    }
+
     try {
       const response = await fetch("https://veterinaria-production-b14c.up.railway.app/api/v1/form/dosificacion", {
         method: "POST",

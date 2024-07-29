@@ -50,6 +50,77 @@ function Biometria() {
       COvulvar: formData.get("COvulvar") || null,
     };
 
+    
+    const isMacho = parsedAnimalData.sexo === "Macho";
+
+    if (isMacho) {
+      if (
+        data.peso &&
+        data.arete &&
+        data.CNdiente &&
+        data.canino &&
+        data.Ccorporal &&
+        data.Lcabeza &&
+        data.Acabeza &&
+        data.Loreja &&
+        data.Lcuello &&
+        data.Lcuerpo &&
+        data.ALcruz &&
+        data.ANgrupa &&
+        data.ALgrupa &&
+        data.AMpecho &&
+        data.APanterior &&
+        data.APposterior &&
+        data.CIcuerpo &&
+        data.isquiones &&
+        data.TDEancho &&
+        data.TDElargo &&
+        data.TIZancho &&
+        data.TIZlargo
+      ) {
+        // todos los campos están llenos para Macho excepto COvulvar
+      } else {
+        await Swal.fire({
+          icon: "error",
+          title: "¡ERROR!",
+          text: "Complete todos los campos.",
+        });
+        return; // Evita el envío del formulario
+      }
+    } else { // Hembra
+      if (
+        data.peso &&
+        data.arete &&
+        data.CNdiente &&
+        data.canino &&
+        data.Ccorporal &&
+        data.Lcabeza &&
+        data.Acabeza &&
+        data.Loreja &&
+        data.Lcuello &&
+        data.Lcuerpo &&
+        data.ALcruz &&
+        data.ANgrupa &&
+        data.ALgrupa &&
+        data.AMpecho &&
+        data.APanterior &&
+        data.APposterior &&
+        data.CIcuerpo &&
+        data.isquiones &&
+        data.COvulvar
+      ) {
+        // todos los campos están llenos para Hembra excepto TDEancho, TDElargo, TIZancho, TIZlargo
+      } else {
+        await Swal.fire({
+          icon: "error",
+          title: "¡ERROR!",
+          text: "Complete todos los campos.",
+        });
+        return; // Evita el envío del formulario
+      }
+    }
+
+
     try {
       // Aquí deberías hacer la llamada a tu API para enviar los datos
       const response = await fetch("https://veterinaria-production-b14c.up.railway.app/api/v1/form/biometria", {
@@ -313,7 +384,7 @@ function Biometria() {
         </div>
 
       
-        {sexo === "hembra" ? (
+        {sexo === "Hembra" ? (
           <div className="mt-2">
             <label className="block text-sm font-medium leading-6 text-gray-900">
               Comisura vulvar

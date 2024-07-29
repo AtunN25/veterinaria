@@ -35,6 +35,28 @@ function Muestras() {
       maniqui: formData.get("maniqui"),
     };
 
+    // Verifica si todos los campos requeridos están llenos
+    if (
+      !data.h_inicio ||
+      !data.h_fin ||
+      !data.t_inicio ||
+      !data.t_fin ||
+      !data.volumen ||
+      !data.color ||
+      !data.filancia ||
+      !data.pH ||
+      !data.maniqui ||
+      //!data.obs||
+      !data.arete
+    ) {
+      await Swal.fire({
+        icon: "error",
+        title: "¡ERROR!",
+        text: "Complete todos los campos obligatorios.",
+      });
+      return; // Evita el envío del formulario si hay campos vacíos
+    }
+
     try {
       const response = await fetch(
         "https://veterinaria-production-b14c.up.railway.app/api/v1/form/muestra",
