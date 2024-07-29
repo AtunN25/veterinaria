@@ -21,36 +21,36 @@ function Biometria() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    
+
     // Recolecta los datos del formulario
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const data = {
-      peso:formData.get("peso"),
+      peso: formData.get("peso"),
       arete: parsedAnimalData.arete,
-      CNdiente: formData.get("CNdiente") ,
-      canino: formData.get("canino") ,
-      Ccorporal: formData.get("Ccorporal") ,
-      Lcabeza: formData.get("Lcabeza") ,
-      Acabeza: formData.get("Acabeza") ,
-      Loreja: formData.get("Loreja") ,
-      Lcuello: formData.get("Lcuello") ,
-      Lcuerpo: formData.get("Lcuerpo") ,
-      ALcruz: formData.get("ALcruz") ,
-      ANgrupa: formData.get("ANgrupa") ,
-      ALgrupa: formData.get("ALgrupa") ,
-      AMpecho: formData.get("AMpecho") ,
-      APanterior: formData.get("APanterior") ,
-      APposterior: formData.get("APposterior") ,
-      CIcuerpo: formData.get("CIcuerpo") ,
-      isquiones: formData.get("isquiones") ,
+      CNdiente: formData.get("CNdiente"),
+      canino: formData.get("canino"),
+      Ccorporal: formData.get("Ccorporal"),
+      Lcabeza: formData.get("Lcabeza"),
+      Acabeza: formData.get("Acabeza"),
+      Loreja: formData.get("Loreja"),
+      Lcuello: formData.get("Lcuello"),
+      Lcuerpo: formData.get("Lcuerpo"),
+      ALcruz: formData.get("ALcruz"),
+      ANgrupa: formData.get("ANgrupa"),
+      ALgrupa: formData.get("ALgrupa"),
+      AMpecho: formData.get("AMpecho"),
+      APanterior: formData.get("APanterior"),
+      APposterior: formData.get("APposterior"),
+      CIcuerpo: formData.get("CIcuerpo"),
+      isquiones: formData.get("isquiones"),
       TDEancho: formData.get("TDEancho") || null,
       TDElargo: formData.get("TDElargo") || null,
       TIZancho: formData.get("TIZancho") || null,
       TIZlargo: formData.get("TIZlargo") || null,
       COvulvar: formData.get("COvulvar") || null,
+      obs: formData.get("obs"),
     };
 
-    
     const isMacho = parsedAnimalData.sexo === "Macho";
 
     if (isMacho) {
@@ -87,7 +87,8 @@ function Biometria() {
         });
         return; // Evita el envío del formulario
       }
-    } else { // Hembra
+    } else {
+      // Hembra
       if (
         data.peso &&
         data.arete &&
@@ -120,17 +121,19 @@ function Biometria() {
       }
     }
 
-
     try {
       // Aquí deberías hacer la llamada a tu API para enviar los datos
-      const response = await fetch("https://veterinaria-production-b14c.up.railway.app/api/v1/form/biometria", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      console.log(JSON.stringify(data))
+      const response = await fetch(
+        "https://veterinaria-production-b14c.up.railway.app/api/v1/form/biometria",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      console.log(JSON.stringify(data));
       if (response.ok) {
         localStorage.removeItem("animalData");
         await Swal.fire({
@@ -152,10 +155,11 @@ function Biometria() {
 
   return (
     <div className="p-4 rounded-sm">
-      <h2 className="text-xl font-bold leading-7 text-gray-900">Biometria {parsedAnimalData.arete} sexo : {parsedAnimalData.sexo}</h2>
+      <h2 className="text-xl font-bold leading-7 text-gray-900">
+        Biometria {parsedAnimalData.arete} sexo : {parsedAnimalData.sexo}
+      </h2>
 
       <form onSubmit={handleSubmit}>
-       
         <label className="block text-sm font-medium leading-6 text-gray-900">
           Circunferencia del cuerpo
         </label>
@@ -383,7 +387,6 @@ function Biometria() {
           />
         </div>
 
-      
         {sexo === "Hembra" ? (
           <div className="mt-2">
             <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -441,6 +444,17 @@ function Biometria() {
             />
           </div>
         )}
+
+        <div className="mt-2">
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Observaciones
+          </label>
+          <textarea
+            name="obs"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5"
+            placeholder="Ingrese observaciones"
+          />
+        </div>
 
         <div className="mt-4">
           <button
