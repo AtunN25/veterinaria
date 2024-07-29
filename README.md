@@ -1,6 +1,6 @@
 
-
-# React + TypeScript + Vite
+# Proyecto de Sistema de Registro e Informes de Camelidos Sudamericanos para la Escuela de Veterinaria y Zootecnia en la Universidad Nacional Jorge Basadre Grohmann
+# React + TypeScript + Vite + Express + PostreSQL
 
 Compañero Jimmy Flores de Escuela de Veterinaria y Zootecnia realizando la elicitaicon de requisitos
 
