@@ -1,4 +1,8 @@
+
+
 # React + TypeScript + Vite
+
+Compañero Jimmy Flores de Escuela de Veterinaria y Zootecnia realizando la elicitaicon de requisitos
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
