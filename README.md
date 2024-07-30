@@ -4,10 +4,10 @@
 ## Descripción
 El proyecto consiste en la creación de un sistema web para el registro de camélidos sudamericanos en la UNJBG. Este proyecto fue desarrollado por: 
 <br></br>
-Estudiantes de la "Escuela Profesional de Ingeniería en Informática y Sistemas":
+Estudiantes de la "Escuela Profesional de Ingeniería en Informática y Sistemas :
 - **<span style="color: #00BFFF">Frank Chaparro</span>**  (Desarrollador - Mi persona)
-- **<span style="color: #00BFFF">Sandro Bailon</span>**   (Desarrollador - [enlace GitHub](https://github.com/m4wi))<br></br>
-Estudiante de la "Escuela Profesional de Veterinaria y Zootecnia":
+- **<span style="color: #00BFFF">Sandro Bailon</span>**   (Desarrollador - [enlace GitHub](https://github.com/m4wi))
+Estudiante de la "Escuela Profesional de Veterinaria y Zootecnia :
 - **<span style="color: #00BFFF">Jimmy Flores</span>**<br></br>
 Jimmy Flores fue quien solicitó el desarrollo del software, con quien tuvimos una interacción constante a lo largo de un período de dos semanas, siguiendo una metodología ágil para asegurar que el sistema cumpliera con los requisitos establecidos. El sistema utiliza React + Vite para el Frontend, Node + Express para el Backend, y PostgreSQL como gestor de Base de Datos.
 
