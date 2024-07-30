@@ -232,6 +232,7 @@ function NewRegister() {
                     type="number"
                     name="edadAnios"
                     id="edadAnios"
+                    min="0"
                     placeholder="Años"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/6 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black"
                   />
@@ -239,6 +240,7 @@ function NewRegister() {
                     type="number"
                     name="edadMeses"
                     id="edadMeses"
+                    min="0"
                     placeholder="Meses"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/6 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black"
                   />
