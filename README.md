@@ -2,7 +2,13 @@
 # SISTEMA DE CAMELIDOS SUDAMERICANOS EN LA UNIVERSIDAD NACIONAL JORGE BASADRE GROHMANN
 
 ## Descripción
-El proyecto consiste en la creación de un sistema web para el registro de camélidos sudamericanos en la UNJBG. Este proyecto fue desarrollado por mi persona **<span style="color: #00BFFF">Frank Chaparro</span>** y [Sandro Bailon](https://github.com/m4wi), estudiantes de la "Escuela Profesional de Ingeniería en Informática y Sistemas", en colaboración con **<span style="color: #00BFFF">Jimmy Flores</span>**, alumno de la "Escuela Profesional de Veterinaria y Zootecnia".
+El proyecto consiste en la creación de un sistema web para el registro de camélidos sudamericanos en la UNJBG. Este proyecto fue desarrollado por: 
+  
+  Estudiantes de la "Escuela Profesional de Ingeniería en Informática y Sistemas"
+    - mi persona **<span style="color: #00BFFF">Frank Chaparro</span>**(Desarrollador)
+    - [Sandro Bailon](https://github.com/m4wi) (Desarrollador)
+  Estudiante de la "Escuela Profesional de Veterinaria y Zootecnia"
+    - **<span style="color: #00BFFF">Jimmy Flores</span>**, alumno de la .
 
 
 
