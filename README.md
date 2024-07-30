@@ -17,7 +17,7 @@ El proyecto conste de la creacion de un Sistema web para el registro de camelido
 
 <p align="center">
   <a href="https://github.com/AtunN25/veterinaria">
-    <img src="./assets/login.png" alt="Veterinaria" width="300"/>
+    <img src="src/assets/login.png" alt="Veterinaria" width="300"/>
   </a>
 </p>
 
