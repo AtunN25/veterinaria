@@ -2,14 +2,11 @@
 # SISTEMA DE CAMELIDOS SUDAMERICANOS EN LA UNIVERSIDAD NACIONAL JORGE BASADRE GROHMANN
 
 ## Descripción
-El proyecto consiste en la creación de un sistema web para el registro de camélidos sudamericanos en la UNJBG. Este proyecto fue desarrollado por: 
-<br></br>
-Estudiantes de la "Escuela Profesional de Ingeniería en Informática y Sistemas :
-- **<span style="color: #00BFFF">Frank Chaparro</span>**  (Desarrollador - Mi persona)
-- **<span style="color: #00BFFF">Sandro Bailon</span>**   (Desarrollador - [enlace GitHub](https://github.com/m4wi))
-Estudiante de la "Escuela Profesional de Veterinaria y Zootecnia :
-- **<span style="color: #00BFFF">Jimmy Flores</span>**<br></br>
-Jimmy Flores fue quien solicitó el desarrollo del software, con quien tuvimos una interacción constante a lo largo de un período de dos semanas, siguiendo una metodología ágil para asegurar que el sistema cumpliera con los requisitos establecidos. El sistema utiliza React + Vite para el Frontend, Node + Express para el Backend, y PostgreSQL como gestor de Base de Datos.
+El proyecto consiste en la creación de un sistema web para el registro de camélidos sudamericanos en la UNJBG. Este proyecto fue desarrollado por Frank Chaparro y Sandro Bailón, estudiantes de la "Escuela Profesional de Ingeniería en Informática y Sistemas", en colaboración con Jimmy Flores, alumno de la "Escuela Profesional de Veterinaria y Zootecnia". Jimmy Flores fue quien solicitó el desarrollo del software.
+
+El desarrollo del proyecto se realizó siguiendo los principios de la metodología ágil, con entregas frecuentes y reuniones regulares con el cliente para asegurar que el software cumpliera con sus requisitos y expectativas. La interacción constante con el cliente se llevó a cabo durante un período de dos semanas, ajustando el desarrollo en función de sus comentarios y necesidades.
+
+El sistema utiliza React + Vite para el frontend, Node + Express para el backend, y PostgreSQL como gestor de base de datos.
 
 ## Requerimientos principales
   - Uso de una base de datos.
