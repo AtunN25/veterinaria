@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
-import veterinaria from "../assets/veterinaria.png";
 
 import cantidad from "../assets/cantidad.png";
 import salud from "../assets/salud.png";
