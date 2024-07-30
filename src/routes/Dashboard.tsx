@@ -3,6 +3,16 @@ import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import veterinaria from "../assets/veterinaria.png";
 
+import cantidad from "../assets/cantidad.png";
+import salud from "../assets/salud.png";
+import repor from "../assets/repro.png";
+import semen from "../assets/semen.png";
+import fibra from "../assets/fibra.png";
+import bio from "../assets/bio.png";
+import nuevo from "../assets/nuevo.png";
+
+import logos from "../assets/logos.png";
+
 interface Animal {
   id_arete: string;
   fmdate: string;
@@ -213,23 +223,17 @@ function Dashboard() {
 
   return (
     <div className="">
-      <div className="bg-amber-950 flex justify-between p-2 ">
-        <div className=" w-4/5 md:w-7/8 p-2">
-          <h2 className=" text-slate-200 font-sans text-sm lg:text-lg">
-            SISTEMA DE CAMELIDOS SUDAMERICANOS EN LA UNIVERSIDAD NACIONAL JORGE
-            BASADRE GROHMANN
+      <div className="bg-amber-950 flex flex-col md:flex-row justify-between md:p-4 ">
+        <div className="md:w-4/8 p-2 ">
+          <h2 className="text-slate-200 font-sans text-center md:text-start">
+            SISTEMA DE CAMÉLIDOS SUDAMERICANOS
           </h2>
+          <h2 className="text-slate-200 font-sans text-center md:text-start">SISCAS - UNJBG</h2>
         </div>
-        <div className=" w-1/5 md:w-1/8 flex justify-items-center  items-center md:justify-end md:pr-4">
-          <img
-            className=" w-full md:h-16 md:w-16 "
-            width="60 "
-            height="60 "
-            src={veterinaria}
-          />
+        <div className=" md:mt-0 pb-2 md:pb-0">
+          <img className="w-full md:h-16" src={logos} />
         </div>
       </div>
-
       <div className="p-2">
         <div className="bg-gray-800 flex justify-between p-2 rounded-lg">
           <div className="flex items-center">
@@ -237,7 +241,7 @@ function Dashboard() {
               <img
                 width="30"
                 height="30"
-                src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/external-llama-animal-body-icongeek26-flat-icongeek26.png"
+                src={cantidad}
                 alt="external-llama-animal-body-icongeek26-flat-icongeek26"
               />
               <div className="px-3 text-left rtl:text-right">
@@ -264,30 +268,30 @@ function Dashboard() {
           </button>
         </div>
         <div className="rounded overflow-hidden shadow-lg justify-start p-2">
-          <div className="flex flex-wrap items-center justify-center gap-2">
+          <div className="flex flex-wrap items-center justify-center gap-2 ">
             <button
-              className="bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
+              className="bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 space-x-2"
               onClick={() => handleButtonClick("/newregister")}
             >
               <img
-                width="30"
-                height="30"
-                src="https://img.icons8.com/external-icongeek26-outline-gradient-icongeek26/64/external-llama-animal-head-icongeek26-outline-gradient-icongeek26.png"
+                width="25"
+                height="25"
+                src={nuevo}
                 alt="external-llama-animal-head-icongeek26-outline-gradient-icongeek26"
               />
-              <div className="text-left rtl:text-right">
-                <div className="mb-1 text-xs ">+Nuevo Animal</div>
+              <div className="text-left rtl:text-right ">
+                <div className="mb-1 text-xs ">Nuevo Animal</div>
               </div>
             </button>
 
             <button
-              className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
+              className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 space-x-2"
               onClick={() => handleButtonClick("/biometria")}
             >
               <img
                 width="30"
                 height="30"
-                src="https://img.icons8.com/fluency/48/fingerprint-accepted.png"
+                src={bio}
                 alt="fingerprint-accepted"
               />
               <div className="text-left rtl:text-right">
@@ -296,27 +300,22 @@ function Dashboard() {
             </button>
 
             <button
-              className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
+              className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 space-x-2"
               onClick={() => handleButtonClick("/clasificacionfibra")}
             >
-              <img
-                width="30"
-                height="30"
-                src="https://img.icons8.com/color/48/two-hairs.png"
-                alt="two-hairs"
-              />
+              <img width="21" height="21" src={fibra} alt="two-hairs" />
               <div className="text-left rtl:text-right">
                 <div className="mb-1 text-xs">Clasificacion de Fibra</div>
               </div>
             </button>
             <button
-              className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
+              className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 space-x-2"
               onClick={() => handleButtonClick("/muestras")}
             >
               <img
                 width="30"
                 height="30"
-                src="https://img.icons8.com/external-vectorslab-flat-vectorslab/53/external-Injection-education-and-science-vectorslab-flat-vectorslab.png"
+                src={semen}
                 alt="external-Injection-education-and-science-vectorslab-flat-vectorslab"
               />
               <div className="text-left rtl:text-right">
@@ -325,28 +324,23 @@ function Dashboard() {
             </button>
 
             <button
-              className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
+              className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 space-x-2"
               onClick={() => handleButtonClick("/capacidadreproductiva")}
             >
-              <img
-                width="30"
-                height="30"
-                src="https://img.icons8.com/dusk/64/alpaca--v1.png"
-                alt="alpaca--v1"
-              />
+              <img width="28" height="28" src={repor} alt="alpaca--v1" />
               <div className="text-left rtl:text-right">
                 <div className="mb-1 text-xs">Capacidad reproductiva</div>
               </div>
             </button>
 
             <button
-              className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5"
+              className="sm:w-auto bg-gray-800 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 space-x-2"
               onClick={() => handleButtonClick("/salud")}
             >
               <img
-                width="30"
-                height="30"
-                src="https://img.icons8.com/fluency/48/heart-with-pulse--v1.png"
+                width="23"
+                height="23"
+                src={salud}
                 alt="heart-with-pulse--v1"
               />
               <div className="text-left rtl:text-right">
@@ -448,7 +442,7 @@ function Dashboard() {
                   </th>
                 </tr>
               </thead>
-              
+
               <tbody className="bg-gray-800">
                 {animalesInvertidos.map((animal, index) => (
                   <tr
@@ -484,7 +478,9 @@ function Dashboard() {
                       {animal.diferencia_peso}
                     </td>
                     <td className="px-6 py-4 bg-gray-50 dark:bg-gray-800">
-                      {(animal.rep_fecha === null && animal.sexo == "Hembra") ? "No es macho" : animal.rep_fecha}
+                      {animal.rep_fecha === null && animal.sexo == "Hembra"
+                        ? "No es macho"
+                        : animal.rep_fecha}
                     </td>
                     <td className="px-6 py-4 bg-gray-50 dark:bg-gray-800">
                       {animal.fecha_futura}
