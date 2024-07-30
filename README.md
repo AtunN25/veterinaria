@@ -2,7 +2,9 @@
 # SISTEMA DE CAMELIDOS SUDAMERICANOS EN LA UNIVERSIDAD NACIONAL JORGE BASADRE GROHMANN
 
 ## Descripción
-El proyecto conste de la creacion de un Sistema web para el registro de camelidos sudamericanos en la UNJBG, donde participamos 2 estudiantes de la "Escuela Profesional de Ingeniera en Infoormatica y Sistemas" , mas un alumno de la "Escuela Profesional de Veterinaria y Zootecnia", se aplico una interaccion constante para el desarrollo similar a la metologia agil, dicho sistema usa React + Vite para el Fronted, node + express para el backend y como gestor de base de datos se uso PostgreSQL.
+El proyecto consiste en la creación de un sistema web para el registro de camélidos sudamericanos en la UNJBG. Este proyecto fue desarrollado por mi persona Frank Chaparro y [Sandro Bailon](https://github.com/m4wi) , estudiantes de la "Escuela Profesional de Ingeniería en Informática y Sistemas", en colaboración con Jimmy Flores, alumno de la "Escuela Profesional de Veterinaria y Zootecnia".
+
+Jimmy Flores fue quien solicitó el desarrollo del software, con quien tuvimos una interacción constante a lo largo de un período de dos semanas, siguiendo una metodología ágil para asegurar que el sistema cumpliera con los requisitos establecidos. El sistema utiliza React + Vite para el Frontend, Node + Express para el Backend, y PostgreSQL como gestor de Base de Datos.
 
 ## Requerimientos principales
   - Uso de una base de datos.
@@ -14,48 +16,32 @@ El proyecto conste de la creacion de un Sistema web para el registro de camelido
   - Diseño Responsive
 
 ## Login
-
 <p align="center">
   <a href="https://github.com/AtunN25/veterinaria">
-    <img src="src/assets/login.png" alt="Veterinaria" width="1000"/>
+    <img src="src/assets/login.png" alt="Veterinaria" width="800"/>
   </a>
 </p>
 
-
 ## Dashboard
+<p align="center">
+  <a href="https://github.com/AtunN25/veterinaria">
+    <img src="src/assets/dashboard.png" alt="Veterinaria" width="800"/>
+  </a>
+</p>
 
+## Tecnologias Usadas
+  - React 
+  - Vite
+  - TypeScript
+  - Tailwind CSS
+  - Express
+  - PostgreSQL
+  - GitHub Pages (para el despliegue)
+  - Railway
+  - GitHub
 
+## Observaciones
+  - El presente trabajo se dividio en 3 capas, este Repositorio en si es la parte Frontend con Vite + React + TypeScript , se uso GitHubt para el despliegue, en cuanto a mi labor fue encargame el desarrollo del Frontend , respecto al Backend + Base de datos estan subidas en Railway de manera gratuita por 1 mes.
+    
+  - El acceso al sistema está restringido y únicamente autorizado para Jimmy, el cual será el único usuario con credenciales para ingresar al sistema. Esto se debe a que el sistema cuenta con un mecanismo de autenticación (login) que garantiza que solo los usuarios autorizados puedan acceder a las funcionalidades del mismo.
 
-
-# React + TypeScript + Vite + Express + PostreSQL
-
-Compañero Jimmy Flores de Escuela de Veterinaria y Zootecnia realizando la elicitaicon de requisitos
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
