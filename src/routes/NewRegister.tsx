@@ -6,7 +6,7 @@ function NewRegister() {
   const navigate = useNavigate();
 
   //ANIMALSTYPE
-  const [animalType, setAnimalType] = useState("1");
+  const [animalType, setAnimalType] = useState("2");
   const [birthType, setBirthType] = useState("Comprada");
 
   //DATE
@@ -156,8 +156,9 @@ function NewRegister() {
               name="especie"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/3 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black "
             >
-              <option value="1">Llama</option>
               <option value="2">Alpaca</option>
+              <option value="1">Llama</option>
+              
             </select>
           </div>
         </div>

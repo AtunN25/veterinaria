@@ -83,7 +83,7 @@ function Login() {
           <div className="w-full  bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-transparent  dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8 bg-blue-opacity rounded-md">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Usuario
+                Login
               </h1>
               <form className="space-y-4 md:space-y-6" action="#">
                 <div>
@@ -95,7 +95,7 @@ function Login() {
                     name="email"
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Usuario1"
+                    placeholder="usuario"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   ></input>
@@ -108,7 +108,7 @@ function Login() {
                     type="password"
                     name="password"
                     id="password"
-                    placeholder="••••••••"
+                    placeholder="********"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
