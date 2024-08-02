@@ -101,7 +101,7 @@ function Muestras() {
           Numero de maniqui
         </label>
         <input
-          type="number"
+          type="decimal"
           name="maniqui"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder=""
@@ -135,10 +135,10 @@ function Muestras() {
 
         <div className="mt-2">
           <label className="block text-sm font-medium leading-6 text-gray-900">
-            Tiempo de Inicio
+            Temperatura Inicial
           </label>
           <input
-            type="number"
+            type="decimal"
             name="t_inicio"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />
@@ -146,10 +146,10 @@ function Muestras() {
 
         <div className="mt-2">
           <label className="block text-sm font-medium leading-6 text-gray-900">
-            Tiempo de Fin
+            Temperatura Final
           </label>
           <input
-            type="number"
+            type="decimal"
             name="t_fin"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />
@@ -160,7 +160,7 @@ function Muestras() {
             Volumen
           </label>
           <input
-            type="number"
+            type="decimal"
             name="volumen"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />
@@ -186,7 +186,7 @@ function Muestras() {
             ph
           </label>
           <input
-            type="number"
+            type="decimal"
             name="ph"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />

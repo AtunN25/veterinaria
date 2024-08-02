@@ -165,7 +165,7 @@ function Biometria() {
         </label>
         <input
           name="CIcuerpo"
-          type="number"
+          type="decimal"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="Ingrese ancho de grupa"
         />
@@ -175,7 +175,7 @@ function Biometria() {
             C. Dentaria de boca
           </label>
           <input
-            type="text"
+            type="decimal"
             name="CNdiente"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="ej: llena"
@@ -199,7 +199,7 @@ function Biometria() {
             Peso
           </label>
           <input
-            type="number"
+            type="decimal"
             step="0.1"
             name="peso"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -212,7 +212,7 @@ function Biometria() {
             Condición Corporal
           </label>
           <input
-            type="number"
+            type="decimal"
             step="0.1"
             name="Ccorporal"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -227,7 +227,7 @@ function Biometria() {
           </label>
           <input
             name="Lcabeza"
-            type="number"
+            type="decimal"
             step="0.1"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Ingrese el largo de cabeza en centimetros"
@@ -240,7 +240,7 @@ function Biometria() {
           </label>
           <input
             name="Acabeza"
-            type="number"
+            type="decimal"
             step="0.1"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Ingrese el ancho de cabeza en centimetros"
@@ -254,7 +254,7 @@ function Biometria() {
           </label>
           <input
             name="Loreja"
-            type="number"
+            type="decimal"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Ingrese el largo de oreja en centimetros"
           />
@@ -267,7 +267,7 @@ function Biometria() {
           </label>
           <input
             name="Lcuello"
-            type="number"
+            type="decimal"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Ingrese el largo del cuellos en centimetros"
           />
@@ -279,7 +279,7 @@ function Biometria() {
           </label>
           <input
             name="Lcuerpo"
-            type="number"
+            type="decimal"
             step="0.1"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Ingrese el largo del cuerpo grupa en centimetros"
@@ -293,7 +293,7 @@ function Biometria() {
           </label>
           <input
             name="ALcruz"
-            type="number"
+            type="decimal"
             step="0.1"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Ingrese altura de cruz grupa en centimetros"
@@ -307,7 +307,7 @@ function Biometria() {
           </label>
           <input
             name="ANgrupa"
-            type="number"
+            type="decimal"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Ingrese ancho de grupa en centimetros"
           />
@@ -320,7 +320,7 @@ function Biometria() {
           </label>
           <input
             name="ALgrupa"
-            type="number"
+            type="decimal"
             step="0.1"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Ingrese la altura de grupa en centimetros"
@@ -334,7 +334,7 @@ function Biometria() {
           </label>
           <input
             name="AMpecho"
-            type="number"
+            type="decimal"
             step="0.1"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Ingrese la amplitud del pecho en centimetros"
